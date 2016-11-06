@@ -130,10 +130,10 @@ export default class Selection extends Component {
         // console.log(this.props.id, U.isDef(this.props.filterOption) || this.props.filterOption == true ? this.filterOption : false);
 
         return (
-            <span>
-                <label className="registration__label" htmlFor={this.props.id}>{this.props.title}</label>
+            <span className="form__row__input--can-grow">
+                <label className="form__label" htmlFor={this.props.id}>{this.props.title}</label>
 
-                <div className={'selection ' + this.props.class + ' ' + classError} id={this.props.id}>
+                <div className={'selection ' + this.props.className + ' ' + classError} id={this.props.id}>
 
                     <Select
                         value={this.props.value}
@@ -172,7 +172,7 @@ export default class Selection extends Component {
 
     displayErrorMsg(error) {
         if (U.isDef(error)) {
-            return <error className="registration__input__error-message">
+            return <error className="form__input__error-message">
                 {error}
             </error>
         }

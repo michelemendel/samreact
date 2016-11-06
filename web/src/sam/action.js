@@ -1,8 +1,7 @@
 import * as consts from "../common/constants.js";
 import * as U from "../common/utils";
-import * as restClient from "../rest/client";
 import * as selectOne from "../data/select_one.js";
-import * as db from '../rest/db';
+import * as db from '../db/registration';
 import registrationModel from "../data/registrationModel";
 
 let action = {};

@@ -7,7 +7,7 @@ import Text from "./input/Text.jsx";
 import Selection from "./input/Selection.jsx"; //https://hacker0x01.github.io/react-datepicker/
 
 const commentPre = "====> RegistrationContent:",
-    inputErrorClass = 'registration__input--error';
+    inputErrorClass = 'form__input--error';
 
 export default class RegistrationContent extends Component {
 
@@ -57,16 +57,13 @@ export default class RegistrationContent extends Component {
         // console.log(m.invalidateCache);
 
         return (
-            <div className="registration">
+            <div>
 
-                <fieldset className="registration__fieldset">
-                    <legend className="registration__fieldset__label">registration</legend>
-
-                    <div className="registration__row">
-                        <span className="registration__input registration__row__input--width-third">
-                            <label className="registration__input__label" htmlFor="dato">Dato</label>
+                <div className="form__row">
+                        <span className="form__input form__row__input--width-third">
+                            <label className="form__input__label" htmlFor="dato">Dato</label>
                             <DatePicker
-                                className="registration__input__field"
+                                className="form__input__field"
                                 selected={U.parseDate(registration.date)}
                                 onChange={this.handleDate(hc('date'))}
                                 dateFormat="YYYY-MM-DD" //YYYY-MM-DDThh:mm:ss
@@ -75,39 +72,39 @@ export default class RegistrationContent extends Component {
                                 id="dato"
                             />
                         </span>
-                    </div>
+                </div>
 
-                    <div className="registration__row">
-                        <Radio name="aOrB"
-                               title="A or B?"
-                               values={{'true': 'Yes', 'false': 'No'}}
-                               checkedVal={registration.aOrB || 'false'}
-                               error={specificError.aOrB}
-                               handleChange={hc}/>
-                    </div>
+                <div className="form__row">
+                    <Radio name="aOrB"
+                           title="Is it true?"
+                           values={{'true': 'Yes', 'false': 'No'}}
+                           checkedVal={registration.aOrB || 'false'}
+                           error={specificError.aOrB}
+                           handleChange={hc}/>
+                </div>
 
-                    <div className="registration__row">
-                        <Selection id="selectOne"
-                                   title="Choose"
-                                   value={registration.selectOne}
-                                   error={specificError.selectOne}
-                                   handleChange={hc}
-                                   behaviour={[false, false, false, true]} // See explanation in Selection.js
-                                   loadFunction={m.selectOne}
-                                   useSpinner={true}/>
-                    </div>
+                <div className="form__row">
+                    <Selection id="selectOne"
+                               title="Choose"
+                               className="form__row__input--width-half"
+                               value={registration.selectOne}
+                               error={specificError.selectOne}
+                               handleChange={hc}
+                               behaviour={[false, false, false, true]} // See explanation in Selection.js
+                               loadFunction={m.selectOne}
+                               useSpinner={true}/>
+                </div>
 
-                    < div className="registration__row">
-                        <Text id="informationText"
-                              title="Enter text"
-                              placeholder="Som text"
-                              val={registration.informationText}
-                              error={specificError.informationText}
-                              handleChange={hc}
-                              className="registration__row__input--can-grow"/>
-                    </div>
+                < div className="form__row">
+                    <Text id="informationText"
+                          title="Enter text"
+                          placeholder="Som text"
+                          val={registration.informationText}
+                          error={specificError.informationText}
+                          handleChange={hc}
+                          className="form__row__input--width-full"/>
+                </div>
 
-                </fieldset>
             </div>
         )
     }

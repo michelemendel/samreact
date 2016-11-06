@@ -65,11 +65,12 @@ export default class Registration extends Component {
         return (
             <div className="registration">
 
-                <form className="registration__form">
+                <form className="registration_form">
                     <RegistrationContent
                         model={this.props.model}
                         handleChange={this.handleChange.bind(this)}
                     />
+
                     <button className="form__button" type="submit" onClick={(e) => this.submitForm(e)}>Save</button>
                 </form>
 

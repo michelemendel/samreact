@@ -143,7 +143,7 @@ export default class Table extends Component {
 
                     <table className="table__body">
                         <thead className="table__body__header">
-                        <tr>
+                        <tr className="table__body__header__row">
                             {colsToShow.map((key, i) => {
                                 return this.headCell(i, key, colHeads[key], model)
                             })}
@@ -178,17 +178,17 @@ export default class Table extends Component {
                 sortAscIcon :
                 sortDescIcon;
 
-        return <th style={this.colStyle(key)} key={i} onClick={this.handleSortChange(key)}>
+        return <th className="table__body__header__row__cell" style={this.colStyle(key)} key={i} onClick={this.handleSortChange(key)}>
             <a href="#">{text}<span className={sortIcon}/></a>
         </th>
     }
 
     colStyle(key) {
         const ws = {
-            date: {width: '0%'},
-            aOrB: {width: '0%'},
-            selectOne: {width: '0%'},
-            informationText: {width: '20%'}
+            date: {width: '35%'},
+            aOrB: {width: '20%'},
+            selectOne: {width: '20%'},
+            informationText: {width: '25%'}
         };
 
         return ws[key];

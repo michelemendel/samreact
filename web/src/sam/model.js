@@ -1,8 +1,7 @@
 import React from "react";
 import * as C from "../common/constants.js";
 import * as U from "../common/utils";
-import * as restClient from "../rest/client";
-import * as db from '../rest/db';
+import * as db from '../db/registration';
 
 let samModel = {};
 const commentPre = "mmmm> SAMModel:",

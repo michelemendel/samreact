@@ -27,9 +27,9 @@ export default class Radio extends Component {
 
         return (
             <span>
-                <label className="registration__label">{this.props.title}</label>
+                <label className="form__label">{this.props.title}</label>
 
-                <div className="registration__radioab" id={this.props.name}>
+                <div className="form__radioab" id={this.props.name}>
                     {Object.keys(values).map((key, i) =>
                         [
                             <input type="radio"
@@ -39,8 +39,8 @@ export default class Radio extends Component {
                                    value={key}
                                    onChange={this.hc(this.props.name)}
                                    key={i}
-                                   className="registration__radioab__input"/>,
-                            <label className="registration__label" htmlFor={this.props.name + '_' + key}>{values[key]}</label>
+                                   className="form__radioab__input"/>,
+                            <label className="form__label" htmlFor={this.props.name + '_' + key}>{values[key]}</label>
                         ]
                     )}
                 </div>
@@ -53,7 +53,7 @@ export default class Radio extends Component {
 
     displayErrorMsg(error) {
         if (U.isDef(error)) {
-            return <error className="registration__input__error-message">
+            return <error className="form__input__error-message">
                 {error}
             </error>
         }
