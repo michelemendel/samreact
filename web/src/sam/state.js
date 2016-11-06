@@ -3,8 +3,7 @@ import * as U from '../common/utils';
 
 let state = {};
 
-const commentPre = "ssss> SAMState:",
-    log = U.logger(commentPre);
+const commentPre = "ssss> SAMState:";
 
 
 /***************************************************************

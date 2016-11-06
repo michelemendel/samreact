@@ -5,8 +5,7 @@ import * as db from '../db/registration';
 import registrationModel from "../data/registrationModel";
 
 let action = {};
-const commentPre = "aaaa> SAMAction:",
-    log = U.logger(commentPre);
+const commentPre = "aaaa> SAMAction:";
 
 export function init(model) {
     action.model = model;
@@ -19,15 +18,14 @@ export function init(model) {
 
 export function tabsNavigate(page, model) {
     if (page === consts.PAGE_REGISTRATION) {
-        enrichRegistrationModel(model, action.model.presentNewRegistration);
+        action.model.presentNewRegistration(enrichRegistrationModel(model));
     } else if (page === consts.PAGE_LIST) {
-        list();
+        action.model.presentList({data:db.getRegistrations()});
     }
 }
 
 export function newRegistration(isInit = false) {
-    // console.log(U.pp(registrationModel()));
-    enrichRegistrationModel(registrationModel(), action.model.presentNewRegistration, isInit);
+    action.model.presentNewRegistration(enrichRegistrationModel(registrationModel(), isInit));
 }
 
 export function registration(model) {
@@ -42,31 +40,9 @@ export function sortTable(model) {
     action.model.presentSortTable(model);
 }
 
-export function logout() {
-    restClient.logout();
-}
-
-
-/***************************************************************
- * Private functions
- */
-
-function enrichRegistrationModel(model, contFn, isInit = true) {
-    // Callback functions used to lookup data
+function enrichRegistrationModel(model, isInit = true) {
     model.selectOne = selectOne;
     model.statusCode = isInit ? consts.REGISTRATION_INIT : consts.REGISTRATION_SUCCESS;
-
-    contFn(model);
-}
-
-function list() {
-    action.model.presentList({data:[]});
-
-    // restClient.getList()
-    //     .then((objs) => {
-    //         let root = {};
-    //         root.data = objs.map((obj) => U.bool2String(U.flatten(obj)));
-    //     })
-    //     .catch(console.log.bind(console));
+    return model;
 }
 

@@ -4,9 +4,7 @@ import * as U from "../common/utils";
 import * as db from '../db/registration';
 
 let samModel = {};
-const commentPre = "mmmm> SAMModel:",
-    log = U.logger(commentPre);
-
+const commentPre = "mmmm> SAMModel:";
 
 export function init(state) {
     samModel.state = state;
@@ -49,10 +47,7 @@ function storeRegistration(model) {
  */
 
 export function presentList(model) {
-    const res = db.getRegistrations();
-    U.ppl(res);
-
-    model.data = sortTable(res, 'date', C.SORT_DIR_DESC);
+    model.data = sortTable(model.data, 'date', C.SORT_DIR_DESC);
     samModel.state.list(model);
 }
 
@@ -80,8 +75,6 @@ export function presentSortTable(model) {
  * filterTable :: String b => ([a], b) -> [c]
  */
 function filterTable(rows, colsToFilterBy, filterText) {
-    // console.log(U.pp(colsToFilterBy));
-
     const regex = new RegExp(filterText, 'i');
 
     return rows.filter((row) =>

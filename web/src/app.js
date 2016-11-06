@@ -6,8 +6,7 @@ import * as model from './sam/model';
 import * as state from './sam/state';
 import * as view from './view/View.jsx';
 
-const commentPre = "----> app:",
-    log = U.logger(commentPre);
+const commentPre = "----> app:";
 
 const query = document.location.search.slice(1).split('&');
 

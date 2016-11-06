@@ -1,6 +1,5 @@
 import R from "ramda";
 import Flat from 'flat'; //https://github.com/hughsk/flat
-import * as consts from "../common/constants.js";
 import moment from 'moment';
 
 const commentPre = "----> U:",
@@ -65,10 +64,10 @@ export function translate(text) {
         return '-';
         break;
     case 'true':
-        return 'Ja';
+        return 'Yes';
         break;
     case 'false':
-        return 'Nei';
+        return 'No';
         break;
     default:
         return text;
@@ -76,20 +75,9 @@ export function translate(text) {
 }
 
 
-// A hack to prevent React to complain about changes to an uncontrolled input
-// Not a true Maybe
-export function maybeString(obj) {
-    return isDef(obj) ? obj : '';
-}
-
-
 /***************************************************************
  * Misc functions
  */
-
-export function functorize(obj) {
-    return R.flatten([obj]);
-}
 
 export function noOp() {}
 
@@ -208,65 +196,6 @@ export function dash2Empty(obj) {
 /***************************************************************
  * Logging and pretty print functions
  */
-
-export function logger(module) {
-    const getFileElement = (obj) => {
-        if (obj) {
-            const m = obj.trim().match(/(\/.+?)\?/);
-            return m ? m[1] : '?';
-        } else {
-            return '?';
-        }
-    };
-
-    const getFnElement = (obj) => {
-        if (obj) {
-            const m = obj.match(/Object\.(\w.+) /);
-            return m ? m[1] : '?';
-        } else {
-            return '?';
-        }
-    };
-
-    function log(module, message, logType) {
-        const stack = new Error().stack;
-        // console.log(pp(stack.split('\n')));
-
-        if (stack) {
-            const elms = stack.split('\n'),
-                calleeFile = getFileElement(elms[3]),
-                callerFile = getFileElement(elms[4]),
-                calleeFn = getFnElement(elms[3]),
-                msg = module + ':' + callerFile + ':' + calleeFile + ':' + calleeFn + ':' + message;
-
-            // console.log(calleeFn);
-
-            switch (logType) {
-            case 'debug':
-                console.debug(msg);
-                break;
-            case 'info':
-                console.info(msg);
-                break;
-            case 'warn':
-                console.warn(msg);
-                break;
-            case 'error':
-                console.error(msg);
-                break;
-            }
-        } else {
-            console.info(message);
-        }
-    }
-
-    return {
-        debug: (message) => log(module, message, 'debug'),
-        info: (message) => log(module, message, 'info'),
-        warn: (message) => log(module, message, 'warn'),
-        error: (message) => log(module, message, 'error')
-    };
-}
 
 export function pp(obj) {
     return JSON.stringify(obj, null, '\t');
