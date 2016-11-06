@@ -1,0 +1,9 @@
+.project
+*.log
+*.prefs
+target
+**/target
+.idea
+*.iml
+**/node_modules
+stop-start.log

@@ -1,0 +1,327 @@
+/*
+ * BEM: Block, Element, Modifier
+ * .block__element--modifier
+ *
+ * Prefixes:
+ * http://blog.kaelig.fr/post/48196348743/fifty-shades-of-bem
+ *
+ * p- Page specific (class applied on the body element), very useful for static pages where maintainability is not at stake — should be avoided in the application itself (e.g.: p-Homepage).
+ * l- Layout, columning, wrappers and containers… (e.g.: l-Masthead, l-Footer)
+ * c- For components (e.g.: c-Dropdown, c-Button…).
+ * u- Utility classes — will probably never change, should never be overridden anywhere else in our code (e.g.: u-textCenter, u-clearfix…).
+ * js- Hooks for JavaScript: should never appear in the CSS itself.
+ *
+ */
+
+$media-big: 980px;
+$media-small: 668px;
+$border-radius: 0.25em;
+
+@import 'rc-select-mod';
+@import '~react-datepicker/dist/react-datepicker.css';
+@import 'datepicker-mod';
+@import 'details-and-print';
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tahoma', sans-serif;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
+  background-color: white;
+}
+
+/***************************************************************
+ * Page
+ */
+
+.page{}
+
+.page__header {
+}
+
+.page__header__title {}
+
+.content--max-width {
+  width: 100%;
+}
+
+.icon-empty:before {
+  content: '\00a0\00a0';
+}
+
+.noSpaceTag {
+  display: none;
+}
+
+
+/***************************************************************
+ * Tabs
+ */
+
+.tabs { }
+
+.tabs__button {
+  border-radius: $border-radius;
+  height: 3em;
+  @media only screen and (max-width: $media-small) {
+    font-size: 0.7em;
+    font-weight: bold;
+    border-radius: 0;
+    height: 2em;
+    line-height: 0;
+  }
+}
+
+.tabs__button__registration:after {
+  content: 'Registration';
+}
+
+.tabs__button__list:after {
+  content: 'List';
+}
+
+.tabs__body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  padding: 1em 4em 1em 4em;
+  max-width: 800px;
+
+  border-width: 1px 0 0 0;
+   border-style: none;
+   border-color: grey;
+   padding: 0.7em 0 0 0;
+ }
+
+
+
+/***************************************************************
+ * Form
+ */
+
+$font-size: 0.9em;
+
+.registration {
+  width: 100%;
+}
+
+
+.registration__label {
+  font-size: $font-size;
+}
+
+// Together with rc-select.scss: .rc-select-selection
+.registration__input {
+  border-radius: $border-radius;
+  font-size: 0.9em;
+}
+
+.registration__input[type='date'] {
+  height: 2.9em;
+}
+
+.registration__input:focus {
+  padding: 0.624rem;
+}
+
+.registration__radioab {
+  line-height: 1.9em;
+  //margin-bottom: 0.3em;
+}
+
+.registration__radioab__input {
+  margin-right: 0.25em;
+}
+
+.registration--width-quarter {
+  width: 25%;
+}
+
+.registration--width-third {
+  width: percentage(1/3);
+}
+
+.registration--width-two-thirds {
+  width: percentage(2/3);
+}
+
+.registration--width-three-quarters {
+  width: 75%;
+}
+
+.registration--width-half {
+  width: 50%;
+}
+
+.registration--width-half {
+  width: 50%;
+}
+
+.registration--margin-right {
+  margin-right: 0.3em;
+}
+
+.registration--can-grow {
+  flex-grow: 1;
+}
+
+.registration--relative {
+  position: relative;
+}
+
+.registration__input--error {
+  box-shadow: 0 0 2px red;
+}
+
+.registration__input__error-message {
+  font-size: 0.8em;
+  display: block;
+  color: red;
+  float: left;
+  margin: 5px 0 0 0;
+}
+
+.registration__info {
+  font-size: $font-size;
+}
+
+.registration__info__checkbox {
+  font-size: $font-size;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration__info__checkbox__label {
+  align-self: flex-end;
+  margin-bottom: 0;
+  margin-left: 1em;
+}
+
+.registration__info__label {
+  margin-bottom: 0.2em;
+}
+
+.registration__info__text {
+  //line-height: 3em;
+  border: 1px solid #a8a8a8;
+  border-radius: $border-radius;
+  padding: 0.625rem;
+  //padding: 0 0.9em 0 0.9em;
+  margin: 0 0.3em 0 0;
+  min-height: 3em;
+}
+
+.registration__info--center {
+  text-align: center;
+}
+
+
+/***************************************************************
+ * Selection component
+ */
+
+.selection {
+  position: relative;
+}
+
+
+/***************************************************************
+ * Pop-From-Top
+ * Information box that pops in from the top and leaves after
+ * a specific time.
+ */
+
+$popFromTop-topPosition: -65px;
+
+.pop-from-top {
+  position: fixed;
+  z-index: 200;
+  top: $popFromTop-topPosition;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border-radius: 0;
+  box-shadow: 0 0 5px black;
+  opacity: 0.9;
+}
+
+.pop-from-top--slide-down {
+  animation-name: pop-from-top-show-hide;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pop-from-top-show-hide {
+  0% {
+    top: $popFromTop-topPosition;
+  }
+  20% {
+    top: 0;
+  }
+  80% {
+    top: 0;
+  }
+  100% {
+    top: $popFromTop-topPosition;
+  }
+}
+
+@keyframes pop-from-topHide {
+  0% {
+    top: 50px;
+  }
+  100% {
+    top: 0;
+  }
+}
+
+/***************************************************************
+ * Table
+ */
+
+.list__filter-input {
+  min-height: 0;
+  line-height: 0;
+  border-radius: $border-radius;
+  padding: 0.6em;
+}
+
+.list__td__font-color--light {
+  color: #6B6B6B;
+}
+
+.list__thead--dark {
+  background-color: #CCCCCC;
+}
+
+.list__table__row--hoverable:hover {
+  outline: 1px solid cornflowerblue;
+}
+
+.list__table__hrow {
+  font-size: 0.85em;
+}
+
+.list__table__hrow {
+  padding: 0 0.3em;
+}
+
+.list__table__row {
+  font-size: 0.84em;
+}
+
+.table__row--cursor {
+  cursor: pointer;
+}
+
