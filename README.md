@@ -2,11 +2,10 @@
 
 ### Install
 
-All script are in package.json.
-
 * clone
+* cd web
 * npm install
-* npm start
+* npm start : Webpack starts a node server 
 
 
 ### Architecture
@@ -14,7 +13,7 @@ All script are in package.json.
 * [React](https://facebook.github.io/react/)
 * [Sam-pattern](http://sam.js.org/).
 
-`V = S( vm(M.present(A(data))), nap(Model) )`
+`V = S(M.present(A(data)), nap(Model) )`
 
 ### Links
 
