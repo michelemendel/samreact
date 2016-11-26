@@ -17,7 +17,7 @@ class View extends Component {
     }
 
     componentWillReceiveProps(props) {
-        this.state[props.model.page] = props.model[props.model.page];
+        // this.state[props.model.page] = props.model[props.model.page];
     }
 
     /***************************************************************
@@ -43,6 +43,9 @@ class View extends Component {
      */
 
     render() {
+
+        console.log('View', U.pp(this.props.model));
+
         return (
             // Page Template
             <div className="page">

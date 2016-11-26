@@ -19,7 +19,6 @@ export default class Selection extends Component {
         // console.log(commentPre + 'cnstr:' + U.pp(props));
         this.state = props;
         this.hcParent = this.props.handleChange(props.id);
-        this.hcInvalidateCache = this.props.handleChange(C.INVALIDATE_CACHE);
         this.loadFn = this.props.loadFunction;
     }
 
@@ -36,18 +35,11 @@ export default class Selection extends Component {
     }
 
     componentDidMount() {
-        if (U.isDef(this.props.invalidateCache) && this.props.invalidateCache) {
-            this.hcInvalidateCache({target: {type: C.INVALIDATE_CACHE, value: C.INVALIDATE_CACHE_NO}});
-        }
-
-        this.runLoadFn('', C.INVALIDATE_CACHE_YES);
+        this.runLoadFn('');
     }
 
     componentWillReceiveProps(props) {
-        if (U.isDef(props.invalidateCache) && props.invalidateCache === 'true') {
-            this.runLoadFn('', C.INVALIDATE_CACHE_YES);
-            this.hcInvalidateCache({target: {type: C.INVALIDATE_CACHE, value: C.INVALIDATE_CACHE_NO}});
-        }
+        this.runLoadFn('');
     }
 
 
@@ -72,7 +64,8 @@ export default class Selection extends Component {
      * Helper functions
      */
 
-    runLoadFn(searchStr, invalidateCache = true) {
+    // runLoadFn(searchStr, invalidateCache = true) {
+    runLoadFn(searchStr) {
         // console.log('Selection:runLoadFn', searchStr);
         if (this.loadFn) {
             this.loadFn.get(searchStr, (data) => {
@@ -80,7 +73,7 @@ export default class Selection extends Component {
                     // console.log('Selection:runLoadFn:ForceUpdate');
                     this.forceUpdate();
                 });
-            }, invalidateCache);
+            });
         }
     }
 

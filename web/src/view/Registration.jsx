@@ -42,8 +42,6 @@ export default class Registration extends Component {
 
             if (e.target.type == C.INPUT_CHECKBOX) {
                 this.state.registrering = update(this.state.registration, {[key]: {$set: e.target.checked ? 'true' : 'false'}});
-            } else if (key == C.INVALIDATE_CACHE) {
-                this.state.invalidateCache = e.target.value;
             } else {
                 this.state.registration = update(this.state.registration, {[key]: {$set: e.target.value}});
             }
@@ -81,8 +79,6 @@ export default class Registration extends Component {
     }
 
     showModal(props) {
-        const title = props.model.generalErrorMessage ? props.model.generalErrorMessage.title : '';
-
         let willDisplay = false;
 
         switch (props.model.statusCode) {
@@ -95,8 +91,7 @@ export default class Registration extends Component {
         }
 
         return <PopFromTop
-            newRegistration={this.props.action.newRegistration.bind(this)}
-            title={title}
+            title={props.model.generalMessage}
             willDisplay={willDisplay}
         />;
     }

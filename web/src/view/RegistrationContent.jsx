@@ -54,7 +54,6 @@ export default class RegistrationContent extends Component {
             specificError = U.isDef(registration.specificErrorMessages) ? registration.specificErrorMessages : '';
 
         // console.log(U.pp(m));
-        // console.log(m.invalidateCache);
 
         return (
             <div>

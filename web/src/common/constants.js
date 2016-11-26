@@ -45,9 +45,7 @@ export const REGISTRATION_VALIDATION_FAILED = 'registration validation failed';
 export const REGISTRATION_ERROR = 'registration general error';
 
 // Messages
-export const REGISTRATION_SUCCESS_TITLE = 'Your registration was successful';
-export const REGISTRATION_SUCCESS_BODY = '';
-export const REGISTRATION_ERROR_TITLE = 'Some error';
+export const REGISTRATION_SUCCESS_MESSAGE = 'Your registration was successful';
 
 export const UNSELECTED_FIELD = '';
 export const UNSELECTED_RADIO_BUTTON = '-';
@@ -67,7 +65,6 @@ export const INPUT_DATE = 'date';
 /***************************************************************
  * Misc
  */
-export const INVALIDATE_CACHE = 'invalidateCache';
 export const INVALIDATE_CACHE_YES = true;
 export const INVALIDATE_CACHE_NO = false;
 

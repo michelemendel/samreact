@@ -2,9 +2,10 @@ import './style/app.scss';
 import * as U from './common/utils';
 import * as C from './common/constants.js';
 import * as action from './sam/action';
-import * as model from './sam/model';
-import * as state from './sam/state';
+import * as modelHandler from './sam/modelHandler';
+import * as stateController from './sam/stateController';
 import * as view from './view/View.jsx';
+import model from "./data/model";
 
 const commentPre = "----> app:";
 
@@ -15,17 +16,15 @@ const query = document.location.search.slice(1).split('&');
  * Wiring
  */
 
-state.init(action, view.getRoot(action));
-model.init(state);
-action.init(model);
+stateController.init(action, view.getRoot(action));
+modelHandler.init(stateController);
+action.init(modelHandler);
 
 
 /**
- * Set start page
+ * Start application
  */
 
-const init = true;
-
-action.newRegistration(init);
+action.tabsNavigate(C.PAGE_REGISTRATION, model());
 
 
