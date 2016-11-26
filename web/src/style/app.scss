@@ -41,16 +41,18 @@ body {
 .page {
   margin: 0 auto;
   width: 80%;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 .page__header {
+  display: flex;
+  margin-bottom: 20px;
 }
 
 .page__header__title {
   font-weight: bold;
-  font-size: 1.3rem;
-  margin-bottom: 10px;
+  font-size: 1.6rem;
+  margin-right: 20px;
 }
 
 .content--max-width {
@@ -66,32 +68,40 @@ body {
 }
 
 /***************************************************************
- * Tabs
+ * Navigation
  */
 
-.tabs {
+.nav {
+  position: relative;
 }
 
-.tabs__button {
-  border-radius: $border-radius;
-  border-style: solid;
-  border-width: 1px;
-  border-color: $input-border-color;
-  margin-right: 5px;
-  margin-bottom: 10px;
-  height: 3em;
-  width: 140px;
+.nav--bottom {
+  display: flex;
+  position: absolute;
+  bottom: 1px;
 }
 
-.tabs__button__registration:after {
+.nav__button {
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.nav__button__registration:after {
   content: 'Registration';
 }
 
-.tabs__button__list:after {
+.nav__button__list:after {
   content: 'List';
 }
 
-.tabs__body {
+/***************************************************************
+ * Content
+ */
+
+.content {
+}
+
+.content__body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -133,7 +143,7 @@ $font-size: 0.9em;
   border-color: $input-border-color;
 }
 
-.form__label {
+.form__label, .form__input__label {
   font-size: $font-size;
   margin: 0 15px 0 3px;
 
@@ -150,7 +160,7 @@ $font-size: 0.9em;
   border-radius: $border-radius;
   border: 1px solid $input-border-color;
   padding: 0.6em;
-  width:100%;
+  width: 100%;
 }
 
 .form__input[type='date'] {
@@ -253,10 +263,11 @@ $font-size: 0.9em;
   text-align: center;
 }
 
-.form__button {
+.form__submit__button {
+  float: right;
   border-radius: $border-radius;
   border: 1px solid $input-border-color;
-  margin: 0 5px 10px 0;
+  margin: 0 0 10px 0;
   height: 3em;
   width: 140px;
 }

@@ -49,19 +49,20 @@ class View extends Component {
 
                 <div className="page__header">
                     <div className="page__header__title">
-                        UCP
+                        Sam & React
                     </div>
+                    <div className="nav">
+                        <div className="nav--bottom">
+                            {this.showTab(this.props, consts.PAGE_REGISTRATION)}
+                            {this.showTab(this.props, consts.PAGE_LIST)}
+                        </div>
+                    </div>
+
                 </div>
 
-                {/* Tabs */}
-                <div className="tabs">
-                    {this.showTab(this.props, consts.PAGE_REGISTRATION)}
-                    {this.showTab(this.props, consts.PAGE_LIST)}
-
-                    {/* Tabs body */}
-                    <div className="tabs__body">
-                        {showPageContent(this.props, this.updateParent.bind(this))}
-                    </div>
+                {/* Content */}
+                <div className="content">
+                    {showPageContent(this.props, this.updateParent.bind(this))}
                 </div>
 
             </div>
@@ -73,7 +74,7 @@ class View extends Component {
 
         return <button
             onClick={this.handleTabClick(page)}
-            className={('tabs__button__' + page) + ' no-print ' + (page === selectedPage ? 'active' : '') + ' ' + 'tabs__button'}
+            className={('nav__button__' + page) + ' no-print ' + (page === selectedPage ? 'active' : '') + ' ' + 'nav__button'}
         />
     }
 }

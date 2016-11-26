@@ -86,7 +86,7 @@ export default class RegistrationContent extends Component {
                 <div className="form__row">
                     <Selection id="selectOne"
                                title="Choose"
-                               className="form__row__input--width-half"
+                               className="form__row__input--width-full"
                                value={registration.selectOne}
                                error={specificError.selectOne}
                                handleChange={hc}

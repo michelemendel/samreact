@@ -71,7 +71,7 @@ export default class Registration extends Component {
                         handleChange={this.handleChange.bind(this)}
                     />
 
-                    <button className="form__button" type="submit" onClick={(e) => this.submitForm(e)}>Save</button>
+                    <button className="form__submit__button" type="submit" onClick={(e) => this.submitForm(e)}>Save</button>
                 </form>
 
                 {/* Info */}
