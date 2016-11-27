@@ -33,7 +33,7 @@ export default class Table extends Component {
     handleFilterChange() {
         return function (e) {
             const filterText = e.target.value;
-            this.props.action.filterTable(this.props.colsToFilterBy, filterText);
+            this.props.action.filterTable(filterText);
         }.bind(this);
     }
 

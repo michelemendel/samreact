@@ -2,8 +2,6 @@ import React from "react";
 import * as C from "../common/constants.js";
 import * as U from "../common/utils";
 import * as db from '../db/registration';
-import update from "immutability-helper";
-
 
 let M = {};
 const commentPre = "mmmm> modelHandler:";
@@ -66,14 +64,18 @@ export function validate(registration) {
  */
 
 export function presentList(list) {
-    M.model.listFull = listSort(list, M.model.sortColumn, C.SORT_DIR_DESC);
-    M.model.list = M.model.listFull;
+    M.model.listFull = list;
+
+    M.model.list = listSort(
+        listFilter(list, C.DEFAULT_COLS_TO_FILTER_BY, M.model.filterText),
+        M.model.sortColumn, M.model.sortDir);
+
     M.stateController.list(M.model);
 }
 
-export function presentListFilter(colsToFilterBy, filterText) {
+export function presentListFilter(filterText) {
     M.model.filterText = filterText;
-    M.model.list = listFilter(M.model.listFull, colsToFilterBy, filterText);
+    M.model.list = listFilter(M.model.listFull, C.DEFAULT_COLS_TO_FILTER_BY, filterText);
     M.stateController.list(M.model);
 }
 

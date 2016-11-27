@@ -52,8 +52,8 @@ function enrichDataModel(model) {
  * List
  */
 
-export function filterTable(colsToFilterBy, filterText) {
-    A.modelHandler.presentListFilter(colsToFilterBy, filterText);
+export function filterTable(filterText) {
+    A.modelHandler.presentListFilter(filterText);
 }
 
 export function sortTable(sortColumn, sortDir) {

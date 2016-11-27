@@ -1,6 +1,8 @@
 import * as C from '../common/constants.js';
 import * as U from '../common/utils';
 import model from "../data/model";
+import Im from 'immutable';
+
 
 let S = {};
 
@@ -22,21 +24,21 @@ export function init(action, view) {
 
 export function registrationNew(model) {
     model.page = C.PAGE_REGISTRATION;
-    S.view(model);
+    presentModel(model);
 }
 
 export function registration(model) {
     model.page = C.PAGE_REGISTRATION;
     model.statusCode = C.REGISTRATION_INIT;
-    S.view(model);
+    presentModel(model);
 }
 
-export function registrationFormUpdate(model){
+export function registrationFormUpdate(model) {
     model.page = C.PAGE_REGISTRATION;
     model.statusCode = C.REGISTRATION_INIT;
     model.generalMessage = '';
 
-    S.view(model);
+    presentModel(model);
 }
 
 export function registrationSubmit(model) {
@@ -48,18 +50,18 @@ export function registrationSubmit(model) {
     if (model.statusCode == C.REGISTRATION_SUCCESS) {
         napNewRegistration();
     } else {
-        S.view(model);
+        presentModel(model);
     }
 }
 
 // Next Action Predicate
 function napNewRegistration() {
-   let m = model();
+    let m = model();
 
-   m.statusCode = C.REGISTRATION_SUCCESS;
-   m.generalMessage = C.REGISTRATION_SUCCESS_MESSAGE;
+    m.statusCode = C.REGISTRATION_SUCCESS;
+    m.generalMessage = C.REGISTRATION_SUCCESS_MESSAGE;
 
-   S.action.navigate(C.PAGE_REGISTRATION, m);
+    S.action.navigate(C.PAGE_REGISTRATION, m);
 }
 
 
@@ -70,9 +72,19 @@ function napNewRegistration() {
 export function list(model) {
     model.page = C.PAGE_LIST;
     model.statusCode = C.LIST_INIT;
-    S.view(model);
+    presentModel(model);
 }
 
+
+/***************************************************************
+ * Pipe to view to have a single place before view to view the model
+ */
+
+function presentModel(model) {
+    // console.clear(); console.log('MODEL', U.pp(model));
+
+    S.view(model);
+}
 
 
 

@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import * as C from '../common/constants';
 import * as consts from "../common/constants.js";
 import Table from "./Table.jsx";
 
@@ -37,8 +38,8 @@ export default class List extends Component {
             <Table
                 model={this.props.model}
                 action={this.props.action}
-                colsToFilterBy={["date", "aOrB", "selectOne", "informationText"]}
-                colsToShow={["date", "aOrB", "selectOne", "informationText"]}
+                colsToFilterBy={C.DEFAULT_COLS_TO_FILTER_BY}
+                colsToShow={C.DEFAULT_COLS_TO_SHOW}
             />
         )
     }

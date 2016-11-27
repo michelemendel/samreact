@@ -3,6 +3,9 @@
  */
 export const LOCALE = 'nb_NO';
 export const UNDEFINED = 'undefined';
+export const INVALIDATE_CACHE_YES = true;
+export const INVALIDATE_CACHE_NO = false;
+
 
 /***************************************************************
  * Main pages
@@ -10,7 +13,6 @@ export const UNDEFINED = 'undefined';
 export const PAGE_REGISTRATION = 'registration';
 export const PAGE_LIST = 'list';
 
-export const LOGOUT = 'logout';
 
 /***************************************************************
  * URL paths
@@ -19,20 +21,11 @@ export const PATH_ROOT = '/ucp/';
 
 
 /***************************************************************
- * REST API
+ * HTML
  */
-export const REST_VERSION = 'v1';
-export const REST_METHOD_GET = 'GET';
-export const REST_METHOD_POST = 'POST';
-
-export const REST_PATH_LIST = 'list';
-
-
-/***************************************************************
- * Table sort
- */
-export const SORT_DIR_ASC = 1;
-export const SORT_DIR_DESC = -1;
+export const RADIO_CHECKED = 'radioChecked';
+export const INPUT_CHECKBOX = 'checkbox';
+export const INPUT_DATE = 'date';
 
 
 /***************************************************************
@@ -57,16 +50,11 @@ export const EMPTY_WITH_DASH = '-';
 
 
 /***************************************************************
- * HTML
+ * Table
  */
-export const RADIO_CHECKED = 'radioChecked';
-export const INPUT_CHECKBOX = 'checkbox';
-export const INPUT_DATE = 'date';
+export const SORT_DIR_ASC = 1;
+export const SORT_DIR_DESC = -1;
+export const DEFAULT_COLS_TO_FILTER_BY = ["date", "aOrB", "selectOne", "informationText"];
+export const DEFAULT_COLS_TO_SHOW = ["date", "aOrB", "selectOne", "informationText"];
 
-
-/***************************************************************
- * Misc
- */
-export const INVALIDATE_CACHE_YES = true;
-export const INVALIDATE_CACHE_NO = false;
 
