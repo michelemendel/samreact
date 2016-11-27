@@ -25,6 +25,6 @@ action.init(modelHandler);
  * Start application
  */
 
-action.tabsNavigate(C.PAGE_REGISTRATION, model());
+action.navigate(C.PAGE_REGISTRATION, model());
 
 

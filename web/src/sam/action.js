@@ -11,28 +11,36 @@ export function init(modelHandler) {
 }
 
 /***************************************************************
- * Action functions
- * Called by GUI events and to start the application.
+ * Navigation
  */
 
-export function tabsNavigate(page, model) {
+export function navigate(page, model) {
+
+    // console.log(commentPre, 'navigate', U.pp(model));
+
     if (page === C.PAGE_REGISTRATION) {
-        A.modelHandler.presentNewRegistration(enrichDataModel(model));
+        if (model) {
+            A.modelHandler.presentRegistrationNew(enrichDataModel(model));
+        } else {
+            A.modelHandler.presentRegistration();
+        }
     } else if (page === C.PAGE_LIST) {
-        A.modelHandler.presentList({data:db.getRegistrations()});
+        A.modelHandler.presentList(db.getRegistrations());
     }
 }
 
-export function registration(model) {
-    A.modelHandler.presentRegistration(model);
+/***************************************************************
+ * Registration
+ */
+
+export function registrationFormUpdate(key) {
+    return (e) => {
+        A.modelHandler.presentRegistrationFormUpdate(key, e.target);
+    };
 }
 
-export function filterTable(model) {
-    A.modelHandler.presentFilterTable(model);
-}
-
-export function sortTable(model) {
-    A.modelHandler.presentSortTable(model);
+export function registrationSubmit() {
+    A.modelHandler.presentRegistrationSubmit();
 }
 
 function enrichDataModel(model) {
@@ -40,3 +48,14 @@ function enrichDataModel(model) {
     return model;
 }
 
+/***************************************************************
+ * List
+ */
+
+export function filterTable(colsToFilterBy, filterText) {
+    A.modelHandler.presentListFilter(colsToFilterBy, filterText);
+}
+
+export function sortTable(sortColumn, sortDir) {
+    A.modelHandler.presentListSort(sortColumn, sortDir);
+}

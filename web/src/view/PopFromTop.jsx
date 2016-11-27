@@ -21,8 +21,6 @@ export default class InfoModal extends Component {
 
 
         if(willDisplay){
-            console.log('THE ANIMATION');
-
             // https://css-tricks.com/restart-css-animation/
             let element = document.getElementById("pop-from-top");
             element.classList.remove("pop-from-top--slide-down");

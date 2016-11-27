@@ -12,7 +12,7 @@ export default class Radio extends Component {
 
     constructor(props) {
         super(props);
-        this.hc = props.handleChange;
+        // this.hc = props.handleChange;
     }
 
     /***************************************************************
@@ -37,7 +37,8 @@ export default class Radio extends Component {
                                    name={this.props.name}
                                    id={this.props.name + '_' + key}
                                    value={key}
-                                   onChange={this.hc(this.props.name)}
+                                   //onChange={this.hc(this.props.name)}
+                                   onChange={this.props.action.registrationFormUpdate(this.props.name)}
                                    key={i}
                                    className="form__radioab__input"/>,
                             <label className="form__label" htmlFor={this.props.name + '_' + key}>{values[key]}</label>

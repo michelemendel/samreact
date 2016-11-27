@@ -1,5 +1,6 @@
 import R from "ramda";
 import Flat from 'flat'; //https://github.com/hughsk/flat
+import * as C from './constants'
 import moment from 'moment';
 
 const commentPre = "----> U:",
@@ -11,11 +12,11 @@ const commentPre = "----> U:",
  */
 
 export function isDef(obj) {
-    return !(typeof obj === "undefined" || obj === null);
+    return !(typeof obj === C.UNDEFINED || obj === null);
 }
 
 export function isObjEmpty(obj) {
-    return (typeof obj === 'undefined') ||
+    return (typeof obj === C.UNDEFINED) ||
         (Object.keys(obj).length === 0 && obj.constructor === Object);
 }
 
@@ -60,7 +61,7 @@ export function startCase(s) {
 
 export function translate(text) {
     switch (text) {
-    case undefined:
+    case C.UNDEFINED:
         return '-';
         break;
     case 'true':

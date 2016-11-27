@@ -17,18 +17,8 @@ export default class RegistrationContent extends Component {
 
     constructor(props) {
         super(props);
-
-        this.state = props.model;
     }
 
-    shouldComponentUpdate() {
-        return true;
-    }
-
-    componentWillReceiveProps(props) {
-        this.state = props.model;
-        // this.forceUpdate();
-    }
 
     /***************************************************************
      * Event handlers
@@ -39,17 +29,16 @@ export default class RegistrationContent extends Component {
      * Render
      */
 
-    handleDate(hc) {
+    handleDate(updateForm) {
         return (selectedDate) => {
-            hc({target: {type: 'date', value: U.date2String(selectedDate)}});
+            updateForm({target: {type: 'date', value: U.date2String(selectedDate)}});
         }
     }
 
     render() {
         // console.log(U.pp(this.props.model));
 
-        let hc = this.props.handleChange.bind(this),
-            m = this.props.model,
+        let m = this.props.model,
             registration = m.registration,
             specificError = U.isDef(registration.specificErrorMessages) ? registration.specificErrorMessages : '';
 
@@ -64,7 +53,7 @@ export default class RegistrationContent extends Component {
                             <DatePicker
                                 className="form__input__field"
                                 selected={U.parseDate(registration.date)}
-                                onChange={this.handleDate(hc('date'))}
+                                onChange={this.handleDate(this.props.action.registrationFormUpdate('date'))}
                                 dateFormat="YYYY-MM-DD" //YYYY-MM-DDThh:mm:ss
                                 todayButton="idag"
                                 maxDate={U.maxDateIsToday()}
@@ -79,7 +68,8 @@ export default class RegistrationContent extends Component {
                            values={{'true': 'Yes', 'false': 'No'}}
                            checkedVal={registration.aOrB || 'false'}
                            error={specificError.aOrB}
-                           handleChange={hc}/>
+                           action={this.props.action}
+                    />
                 </div>
 
                 <div className="form__row">
@@ -88,7 +78,7 @@ export default class RegistrationContent extends Component {
                                className="form__row__input--width-full"
                                value={registration.selectOne}
                                error={specificError.selectOne}
-                               handleChange={hc}
+                               action={this.props.action}
                                behaviour={[false, false, false, true]} // See explanation in Selection.js
                                loadFunction={m.selectOne}
                                useSpinner={true}/>
@@ -100,7 +90,7 @@ export default class RegistrationContent extends Component {
                           placeholder="Som text"
                           val={registration.informationText}
                           error={specificError.informationText}
-                          handleChange={hc}
+                          action={this.props.action}
                           className="form__row__input--width-full"/>
                 </div>
 

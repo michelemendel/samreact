@@ -15,23 +15,17 @@ export default class List extends Component {
     constructor(props) {
         super(props);
 
-        this.rows = this.props.model.data;
+        this.rows = this.props.model.list;
         this.modal = {
             show: false
         };
     }
 
-    shouldComponentUpdate() {
-        return false;
-    }
-
-    componentWillReceiveProps(newProps) {
-        this.forceUpdate(); // To update filter and sort
-    }
 
     /***************************************************************
      * Event handlers
      */
+
 
     /***************************************************************
      * Render

@@ -15,23 +15,12 @@ export default class Selection extends Component {
 
     constructor(props) {
         super(props);
-
-        // console.log(commentPre + 'cnstr:' + U.pp(props));
-        this.state = props;
-        this.hcParent = this.props.handleChange(props.id);
+        this.formUpdate = this.props.action.registrationFormUpdate(props.id);
         this.loadFn = this.props.loadFunction;
     }
 
-    shouldComponentUpdate() {
-        return true;
-    }
-
     componentWillMount() {
-        if (this.props.data) {
-            this.setState({data: this.props.data});
-        } else {
-            this.setState({data: []});
-        }
+        this.setState({selectionList: []});
     }
 
     componentDidMount() {
@@ -49,8 +38,7 @@ export default class Selection extends Component {
 
     onChange() {
         return (value) => {
-            this.setState({value: value});
-            this.hcParent({target: {value: value}}); // So it looks like an event object.
+            this.formUpdate({target: {value: value}}); // So it looks like an event object.
         }
     }
 
@@ -66,10 +54,9 @@ export default class Selection extends Component {
 
     // runLoadFn(searchStr, invalidateCache = true) {
     runLoadFn(searchStr) {
-        // console.log('Selection:runLoadFn', searchStr);
         if (this.loadFn) {
-            this.loadFn.get(searchStr, (data) => {
-                this.setState({data: data}, () => {
+            this.loadFn.get(searchStr, (selectionList) => {
+                this.setState({selectionList: selectionList}, () => {
                     // console.log('Selection:runLoadFn:ForceUpdate');
                     this.forceUpdate();
                 });
@@ -83,7 +70,6 @@ export default class Selection extends Component {
      */
     filterOptionHandler() {
         return (text, option) => {
-            // console.log(text, option);
             return option.key.toLowerCase().indexOf(text.toLowerCase()) != -1;
         }
     }
@@ -112,9 +98,6 @@ export default class Selection extends Component {
      */
 
     render() {
-        // console.log(commentPre + 'render:', U.pp(this.props.data));
-        // console.log(commentPre + 'render:', U.pp(this.state.data));
-
         const behaviour = this.props.behaviour,
             defaultActiveFirstOption = U.isDef(this.props.defaultActiveFirstOption) && this.props.defaultActiveFirstOption == false ? false : true,
             isError = U.isDef(this.props.error),
@@ -151,7 +134,7 @@ export default class Selection extends Component {
                         dropdownAlign={{offset: [0, -1]}}
                     >
                         {
-                            this.state.data.map((d, i) => {
+                            this.state.selectionList.map((d, i) => {
                                 return <Option key={d}>{d}</Option>;
                             })
                         }

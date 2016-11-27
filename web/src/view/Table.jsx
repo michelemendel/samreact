@@ -17,25 +17,14 @@ export default class Table extends Component {
 
     constructor(props) {
         super(props);
-        this.state = props.model;
-        this.state.allRows = props.model.data;
 
         // Details modal
-        this.rows = this.props.model.data;
+        this.rows = this.props.model.list;
         this.modal = {
             show: false
         };
-
     }
 
-    shouldComponentUpdate() {
-        return false;
-    }
-
-    componentWillReceiveProps(newProps) {
-        this.setState({data: newProps.model.data});
-        this.forceUpdate();
-    }
 
     /***************************************************************
      * Event handlers
@@ -43,37 +32,21 @@ export default class Table extends Component {
 
     handleFilterChange() {
         return function (e) {
-            this.state.filterText = e.target.value;
-            // console.log(commentPre + ":", U.pp(this.state.page));
-            this.props.action.filterTable({
-                data: this.state.data,
-                allRows: this.state.allRows,
-                filterText: this.state.filterText,
-                colsToFilterBy: this.props.colsToFilterBy,
-                page: this.state.page
-            });
-
+            const filterText = e.target.value;
+            this.props.action.filterTable(this.props.colsToFilterBy, filterText);
         }.bind(this);
     }
 
     handleSortChange(sortColumn) {
         return function (e) {
             e.preventDefault();
-
-            this.state.sortDir = this.getSortDir(sortColumn);
-            this.state.sortColumn = sortColumn;
-            this.props.action.sortTable({
-                data: this.state.data,
-                sortDir: this.state.sortDir,
-                sortColumn: this.state.sortColumn,
-                page: this.state.page
-            });
+            this.props.action.sortTable(sortColumn, this.getSortDir(sortColumn));
         }.bind(this);
     }
 
     getSortDir(sortColumn) {
         let flipSortDir = (dir) => -1 * dir;
-        return !U.isDef(this.state.sortDir) ? consts.SORT_DIR_ASC : this.state.sortColumn === sortColumn ? flipSortDir(this.state.sortDir) : consts.SORT_DIR_ASC;
+        return !U.isDef(this.props.model.sortDir) ? consts.SORT_DIR_ASC : this.props.model.sortColumn === sortColumn ? flipSortDir(this.props.model.sortDir) : consts.SORT_DIR_ASC;
     }
 
     // Details modal
@@ -85,7 +58,7 @@ export default class Table extends Component {
             // console.log('DisplayRow:', dbId, U.pp(selected));
             this.modal = {
                 show: true,
-                data: selected[0]
+                list: selected[0]
             };
             this.forceUpdate();
         }
@@ -108,9 +81,7 @@ export default class Table extends Component {
 
     render() {
         let model = this.props.model,
-            rows = model.data,
-            sortColumn = model.sortColumn,
-            sortDir = model.sortDir;
+            rows = model.list;
 
         /**
          * Select which columns to display here.
@@ -137,6 +108,7 @@ export default class Table extends Component {
                             <input type="search"
                                    placeholder="Filter"
                                    className="table__filter__input"
+                                   value={this.props.model.filterText}
                                    onChange={this.handleFilterChange()}/>
                         </span>
                     </div>
@@ -199,7 +171,7 @@ export default class Table extends Component {
 
         return <Details
             cancel={this.cancel()}
-            data={this.modal.data}
+            list={this.modal.list}
         />;
     }
 }

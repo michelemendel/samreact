@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import * as C from "../common/constants.js";
 import * as U from "../common/utils";
-import update from "immutability-helper";
 import RegistrationContent from "./RegistrationContent.jsx";
 import PopFromTop from "./PopFromTop.jsx";
 
@@ -16,43 +15,16 @@ export default class Registration extends Component {
 
     constructor(props) {
         super(props);
-        this.state = props.model;
-        // console.log("Constructor:this.state:");
-        // console.dir(this.state);
-        // console.dir(props);
-        props.updateParent(C.PAGE_REGISTRATION, this.state.registration);
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        return false;
-    }
-
-    componentWillReceiveProps(props) {
-        this.state = props.model;
-        this.forceUpdate();
-    }
 
     /***************************************************************
      * Event handlers
      */
 
-    handleChange(key) {
-        return (e) => {
-            // console.log(key, e.target.type, e.target.value);
-
-            if (e.target.type == C.INPUT_CHECKBOX) {
-                this.state.registrering = update(this.state.registration, {[key]: {$set: e.target.checked ? 'true' : 'false'}});
-            } else {
-                this.state.registration = update(this.state.registration, {[key]: {$set: e.target.value}});
-            }
-            this.forceUpdate();
-            this.props.updateParent(C.PAGE_REGISTRATION, this.state.registration);
-        };
-    }
-
     submitForm(e) {
         e.preventDefault();
-        this.props.action.registration(this.state);
+        this.props.action.registrationSubmit();
     }
 
     /***************************************************************
@@ -65,8 +37,8 @@ export default class Registration extends Component {
 
                 <form className="registration_form">
                     <RegistrationContent
+                        action={this.props.action}
                         model={this.props.model}
-                        handleChange={this.handleChange.bind(this)}
                     />
 
                     <button className="form__submit__button" type="submit" onClick={(e) => this.submitForm(e)}>Save</button>

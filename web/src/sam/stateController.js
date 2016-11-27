@@ -16,18 +16,34 @@ export function init(action, view) {
     S.view = view;
 }
 
-export function newRegistration(model) {
-    // console.log(commentPre,'newRegistration');
+/***************************************************************
+ * Registration
+ */
+
+export function registrationNew(model) {
     model.page = C.PAGE_REGISTRATION;
-    // model.statusCode = C.REGISTRATION_INIT;
-
-    // console.log(commentPre, 'newRegistration', U.pp(model));
-
     S.view(model);
 }
 
 export function registration(model) {
     model.page = C.PAGE_REGISTRATION;
+    model.statusCode = C.REGISTRATION_INIT;
+    S.view(model);
+}
+
+export function registrationFormUpdate(model){
+    model.page = C.PAGE_REGISTRATION;
+    model.statusCode = C.REGISTRATION_INIT;
+    model.generalMessage = '';
+
+    S.view(model);
+}
+
+export function registrationSubmit(model) {
+    model.page = C.PAGE_REGISTRATION;
+    model.statusCode = U.isObjEmpty(model.registration.specificErrorMessages)
+        ? C.REGISTRATION_SUCCESS
+        : C.REGISTRATION_VALIDATION_FAILED;
 
     if (model.statusCode == C.REGISTRATION_SUCCESS) {
         napNewRegistration();
@@ -36,35 +52,27 @@ export function registration(model) {
     }
 }
 
-export function errorRegistration(model) {
-    model.page = C.PAGE_REGISTRATION;
-    S.view(model);
-}
+// Next Action Predicate
+function napNewRegistration() {
+   let m = model();
 
-export function list(model) {
-    model.page = C.PAGE_LIST;
-    S.view(model);
-}
+   m.statusCode = C.REGISTRATION_SUCCESS;
+   m.generalMessage = C.REGISTRATION_SUCCESS_MESSAGE;
 
-export function filteredTable(model) {
-    S.view(model);
-}
-
-export function sortTable(model) {
-    S.view(model);
+   S.action.navigate(C.PAGE_REGISTRATION, m);
 }
 
 
 /***************************************************************
- * Next Action Predicate
+ * List
  */
 
-function napNewRegistration() {
-    let m = model();
-    m.statusCode = C.REGISTRATION_SUCCESS;
-    m.generalMessage = C.REGISTRATION_SUCCESS_MESSAGE;
-    S.action.tabsNavigate(C.PAGE_REGISTRATION, m);
+export function list(model) {
+    model.page = C.PAGE_LIST;
+    model.statusCode = C.LIST_INIT;
+    S.view(model);
 }
+
 
 
 

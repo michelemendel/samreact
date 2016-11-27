@@ -56,7 +56,7 @@ export default class Details extends Component {
             'Text'
         ];
 
-        const data = this.props.data,
+        const data = this.props.list,
             title = "Registration",
             body = <div>
                 {

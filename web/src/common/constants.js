@@ -2,6 +2,7 @@
  * Misc
  */
 export const LOCALE = 'nb_NO';
+export const UNDEFINED = 'undefined';
 
 /***************************************************************
  * Main pages
@@ -43,6 +44,7 @@ export const REGISTRATION_INIT = 'registration init';
 export const REGISTRATION_SUCCESS = 'registration success';
 export const REGISTRATION_VALIDATION_FAILED = 'registration validation failed';
 export const REGISTRATION_ERROR = 'registration general error';
+export const LIST_INIT = 'list init';
 
 // Messages
 export const REGISTRATION_SUCCESS_MESSAGE = 'Your registration was successful';

@@ -17,9 +17,11 @@ export default class TableRow extends Component {
         super(props);
     }
 
+
     /***************************************************************
      * Event handlers
      */
+
 
     /***************************************************************
      * Render
