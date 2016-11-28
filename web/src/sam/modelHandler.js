@@ -3,8 +3,9 @@ import * as C from "../common/constants.js";
 import * as U from "../common/utils";
 import * as db from '../db/registration';
 
-let M = {};
 const commentPre = "mmmm> modelHandler:";
+
+let M = {};
 
 export function init(stateController) {
     M.stateController = stateController;
@@ -87,7 +88,7 @@ export function presentListSort(sortColumn, sortDir) {
 }
 
 /**
- * filterTable :: String b => ([a], b) -> [c]
+ * filterTable :: String b => ([a], [b], b) -> [a]
  */
 function listFilter(rows, colsToFilterBy, filterText) {
     const regex = new RegExp(filterText, 'i');

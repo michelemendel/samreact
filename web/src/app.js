@@ -25,6 +25,6 @@ action.init(modelHandler);
  * Start application
  */
 
-action.navigate(C.PAGE_REGISTRATION, model());
+action.registrationNew(model());
 
 

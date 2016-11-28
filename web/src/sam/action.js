@@ -3,8 +3,9 @@ import * as U from "../common/utils";
 import * as selectOne from "../data/select_one.js";
 import * as db from '../db/registration';
 
-let A = {};
 const commentPre = "aaaa> SAMAction:";
+
+let A = {};
 
 export function init(modelHandler) {
     A.modelHandler = modelHandler;
@@ -14,16 +15,9 @@ export function init(modelHandler) {
  * Navigation
  */
 
-export function navigate(page, model) {
-
-    // console.log(commentPre, 'navigate', U.pp(model));
-
+export function navigate(page) {
     if (page === C.PAGE_REGISTRATION) {
-        if (model) {
-            A.modelHandler.presentRegistrationNew(enrichDataModel(model));
-        } else {
-            A.modelHandler.presentRegistration();
-        }
+        A.modelHandler.presentRegistration();
     } else if (page === C.PAGE_LIST) {
         A.modelHandler.presentList(db.getRegistrations());
     }
@@ -32,6 +26,10 @@ export function navigate(page, model) {
 /***************************************************************
  * Registration
  */
+
+export function registrationNew(model) {
+    A.modelHandler.presentRegistrationNew(enrichDataModel(model));
+}
 
 export function registrationFormUpdate(key) {
     return (e) => {

@@ -3,14 +3,12 @@ import * as U from '../common/utils';
 import model from "../data/model";
 import Im from 'immutable';
 
+const commentPre = "ssss> SAMState:";
 
 let S = {};
 
-const commentPre = "ssss> SAMState:";
-
-
 /***************************************************************
- * State controllers
+ * State controller
  */
 
 export function init(action, view) {
@@ -61,7 +59,7 @@ function napNewRegistration() {
     m.statusCode = C.REGISTRATION_SUCCESS;
     m.generalMessage = C.REGISTRATION_SUCCESS_MESSAGE;
 
-    S.action.navigate(C.PAGE_REGISTRATION, m);
+    S.action.registrationNew(m);
 }
 
 
