@@ -1,4 +1,3 @@
-import "whatwg-fetch";
 import * as U from '../common/utils';
 import selectOne from './select_one.json';
 

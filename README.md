@@ -1,4 +1,4 @@
-# ucp-light
+# SAM & React 
 
 ### Install
 
