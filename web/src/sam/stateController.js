@@ -1,7 +1,6 @@
 import * as C from '../common/constants.js';
 import * as U from '../common/utils';
 import model from "../data/model";
-import Im from 'immutable';
 
 const commentPre = "ssss> SAMState:";
 
@@ -79,7 +78,7 @@ export function list(model) {
  */
 
 function presentModel(model) {
-    // console.clear(); console.log('MODEL', U.pp(model));
+    console.clear(); console.log('MODEL', U.pp(model));
 
     S.view(model);
 }

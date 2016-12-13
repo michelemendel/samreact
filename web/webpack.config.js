@@ -60,7 +60,7 @@ var config = {
         new ExtractTextPlugin('bundle.css'),
 
         new HtmlWebpackPlugin({
-            template: 'src/index_template.html',
+            template: 'src/index.html',
             filename: '../index.html', // relativt i forhold til output.path (target/frontend-dist/assets)
             inject: true // sett automatisk inn <link> og <script> elementer hvor nødvendig
         }),
