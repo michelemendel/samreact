@@ -1,6 +1,4 @@
 import './style/app.scss';
-import * as U from './common/utils';
-import * as C from './common/constants.js';
 import * as action from './sam/action';
 import * as modelHandler from './sam/modelHandler';
 import * as stateController from './sam/stateController';

@@ -1,7 +1,6 @@
 import * as C from '../common/constants.js';
 import * as U from '../common/utils';
 import model from "../data/model";
-import Im from 'immutable';
 
 const commentPre = "ssss> SAMState:";
 
