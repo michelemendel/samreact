@@ -33,7 +33,7 @@ export default class TableRow extends Component {
         return (<tr
             data-dbid={this.props.dbId}
             className="table__body__rows__row table__body__rows__row--cursor"
-            onClick={this.props.rowClickFn(this.props.dbId)}
+            onClick={this.props.rowClickFn}
         >
             {this.props.colsToShow.map((key, i) => {
                 row[key] = key === 'date' ? U.formatDate(row[key]) : row[key];

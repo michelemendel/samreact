@@ -50,11 +50,15 @@ export const EMPTY_WITH_DASH = '-';
 
 
 /***************************************************************
- * Table
+ * Registration list
  */
 export const SORT_DIR_ASC = 1;
 export const SORT_DIR_DESC = -1;
 export const DEFAULT_COLS_TO_FILTER_BY = ["date", "aOrB", "selectOne", "informationText"];
 export const DEFAULT_COLS_TO_SHOW = ["date", "aOrB", "selectOne", "informationText"];
+export const LIST_DETAILS_SHOW = true;
+export const LIST_DETAILS_HIDE = false;
+export const LIST_DETAILS_EDITABLE_SHOW = true;
+export const LIST_DETAILS_EDITABLE_HIDE = false;
 
 

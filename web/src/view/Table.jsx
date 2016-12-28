@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import * as action from '../sam/action';
 import TableRow from "./TableRow.jsx";
 import * as consts from "../common/constants.js";
 import * as U from "../common/utils";
@@ -19,7 +20,6 @@ export default class Table extends Component {
         super(props);
 
         // Details modal
-        this.rows = this.props.model.list;
         this.modal = {
             show: false
         };
@@ -31,49 +31,27 @@ export default class Table extends Component {
      */
 
     handleFilterChange() {
-        return function (e) {
+        return (e) => {
             const filterText = e.target.value;
-            this.props.action.filterTable(filterText);
-        }.bind(this);
+            action.filterTable(filterText);
+        };
     }
 
     handleSortChange(sortColumn) {
-        return function (e) {
+        return (e) => {
             e.preventDefault();
-            this.props.action.sortTable(sortColumn, this.getSortDir(sortColumn));
-        }.bind(this);
+            action.sortTable(sortColumn, this.getSortDir(sortColumn));
+        };
     }
 
     getSortDir(sortColumn) {
         let flipSortDir = (dir) => -1 * dir;
-        return !U.isDef(this.props.model.sortDir) ? consts.SORT_DIR_ASC : this.props.model.sortColumn === sortColumn ? flipSortDir(this.props.model.sortDir) : consts.SORT_DIR_ASC;
+        return !U.isDef(this.props.model.list.sortDir)
+            ? consts.SORT_DIR_ASC
+            : this.props.model.list.sortColumn === sortColumn
+            ? flipSortDir(this.props.model.list.sortDir)
+            : consts.SORT_DIR_ASC;
     }
-
-    // Details modal
-    displayDetails(dbId) {
-        return (e) => {
-            let selected = this.rows.filter((row) => {
-                return row.id === dbId;
-            });
-            // console.log('DisplayRow:', dbId, U.pp(selected));
-            this.modal = {
-                show: true,
-                list: selected[0]
-            };
-            this.forceUpdate();
-        }
-    }
-
-    // Details modal
-    cancel() {
-        return () => {
-            this.modal = {
-                show: false,
-            };
-            this.forceUpdate();
-        };
-    }
-
 
     /***************************************************************
      * Render
@@ -81,7 +59,7 @@ export default class Table extends Component {
 
     render() {
         let model = this.props.model,
-            rows = model.list;
+            rows = model.list.rows;
 
         /**
          * Select which columns to display here.
@@ -108,7 +86,7 @@ export default class Table extends Component {
                             <input type="search"
                                    placeholder="Filter"
                                    className="table__filter__input"
-                                   value={this.props.model.filterText}
+                                   value={this.props.model.list.filterText}
                                    onChange={this.handleFilterChange()}/>
                         </span>
                     </div>
@@ -128,7 +106,7 @@ export default class Table extends Component {
                             dbId={row.id}
                             row={row}
                             colsToShow={colsToShow}
-                            rowClickFn={this.displayDetails.bind(this)}
+                            rowClickFn={this.props.rowClickFn(row.id)}
                         />)}
                         </tbody>
                     </table>
@@ -144,13 +122,14 @@ export default class Table extends Component {
     headCell(i, key, text, model) {
         // console.log(commentPre + ":", key, text);
 
-        let sortIcon = model.sortColumn !== key ?
+        let sortIcon = model.list.sortColumn !== key ?
             sortEmpty :
-            model.sortDir == consts.SORT_DIR_ASC ?
+            model.list.sortDir == consts.SORT_DIR_ASC ?
                 sortAscIcon :
                 sortDescIcon;
 
-        return <th className="table__body__header__row__cell" style={this.colStyle(key)} key={i} onClick={this.handleSortChange(key)}>
+        return <th className="table__body__header__row__cell" style={this.colStyle(key)} key={i}
+                   onClick={this.handleSortChange(key)}>
             <a href="#">{text}<span className={sortIcon}/></a>
         </th>
     }
@@ -167,7 +146,7 @@ export default class Table extends Component {
     }
 
     showModal() {
-        if (!this.modal.show) { return; }
+        if (!this.props.model.list.showDetails) { return; }
 
         return <Details
             cancel={this.cancel()}

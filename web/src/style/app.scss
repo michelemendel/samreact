@@ -20,9 +20,13 @@ $input-border-color: #a8a8a8;
 
 //@import '~css-reset-and-normalize/css/reset-and-normalize.min.css';
 @import '~css-reset-and-normalize/css/flavored-reset-and-normalize.min.css';
+@import 'navigation';
+@import 'form';
+@import 'table';
 @import '~react-datepicker/dist/react-datepicker.css';
 @import 'datepicker-mod';
 @import 'rc-select-mod';
+@import 'popfromtop';
 @import 'details-and-print';
 
 * {
@@ -67,32 +71,6 @@ body {
   display: none;
 }
 
-/***************************************************************
- * Navigation
- */
-
-.nav {
-  position: relative;
-}
-
-.nav--bottom {
-  display: flex;
-  position: absolute;
-  bottom: 1px;
-}
-
-.nav__button {
-  font-weight: bold;
-  margin-left: 15px;
-}
-
-.nav__button__registration:after {
-  content: 'Registration';
-}
-
-.nav__button__list:after {
-  content: 'List';
-}
 
 /***************************************************************
  * Content
@@ -112,165 +90,7 @@ body {
   padding: 0.7em 0 0 0;
 }
 
-/***************************************************************
- * Form
- */
 
-.registration {
-  //border: 1px solid lightgray;
-  //border-radius: $border-radius;
-  //padding: 0.7em 6px 0 6px;
-  width: 100%;
-
-}
-
-$font-size: 0.9em;
-
-.form {
-  width: 100%;
-}
-
-.form__row {
-  display: flex;
-  flex-direction: row;
-  margin: 0 0 10px 0;
-}
-
-.form__fieldset {
-  border-radius: $border-radius;
-  border-style: solid;
-  border-width: 1px;
-  border-color: $input-border-color;
-}
-
-.form__label, .form__input__label {
-  font-size: $font-size;
-  margin: 0 15px 0 3px;
-
-}
-
-// Together with rc-select.scss: .rc-select-selection
-.form__input {
-}
-
-.form__input__field {
-  font-size: 1em;
-  display: block;
-  height: 45px;
-  border-radius: $border-radius;
-  border: 1px solid $input-border-color;
-  padding: 0.6em;
-  width: 100%;
-}
-
-.form__input[type='date'] {
-  height: 2.9em;
-}
-
-.form__input:focus {
-  padding: 0.624rem;
-}
-
-.form__radioab {
-  line-height: 1.9em;
-  //margin-bottom: 0.3em;
-}
-
-.form__radioab__input {
-  margin-right: 0.25em;
-}
-
-.form__row__input--width-quarter {
-  width: 25%;
-}
-
-.form__row__input--width-third {
-  width: percentage(1/3);
-}
-
-.form__row__input--width-two-thirds {
-  width: percentage(2/3);
-}
-
-.form__row__input--width-three-quarters {
-  width: 75%;
-}
-
-.form__row__input--width-half {
-  width: 50%;
-}
-
-.form__row__input--width-full {
-  width: 100%;
-}
-
-.form__row__input--margin-right {
-  margin-right: 0.3em;
-}
-
-.form__row__input--can-grow {
-  flex-grow: 1;
-}
-
-.form__row__input--relative {
-  position: relative;
-}
-
-.form__input--error {
-  box-shadow: 0 0 2px red;
-}
-
-.form__input__error-message {
-  font-size: 0.8em;
-  display: block;
-  color: red;
-  float: left;
-  margin: 5px 0 0 0;
-}
-
-.form__info {
-  font-size: $font-size;
-}
-
-.form__info__checkbox {
-  font-size: $font-size;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.form__info__checkbox__label {
-  align-self: flex-end;
-  margin-bottom: 0;
-  margin-left: 1em;
-}
-
-.form__info__label {
-  margin-bottom: 0.2em;
-}
-
-.form__info__text {
-  //line-height: 3em;
-  border: 1px solid $input-border-color;
-  border-radius: $border-radius;
-  padding: 0.625rem;
-  //padding: 0 0.9em 0 0.9em;
-  margin: 0 0.3em 0 0;
-  min-height: 3em;
-}
-
-.form__info--center {
-  text-align: center;
-}
-
-.form__submit__button {
-  float: right;
-  border-radius: $border-radius;
-  border: 1px solid $input-border-color;
-  margin: 0 0 10px 0;
-  height: 3em;
-  width: 140px;
-}
 
 /***************************************************************
  * Selection component
@@ -278,114 +98,5 @@ $font-size: 0.9em;
 
 .selection {
   position: relative;
-}
-
-/***************************************************************
- * Pop-From-Top
- * Information box that pops in from the top and leaves after
- * a specific time.
- */
-
-$popFromTop-topPosition: -65px;
-
-.pop-from-top {
-  position: fixed;
-  z-index: 200;
-  top: $popFromTop-topPosition;
-  left: 0;
-  right: 0;
-  text-align: center;
-  border-radius: 0;
-  box-shadow: 0 0 5px black;
-  opacity: 0.9;
-}
-
-.pop-from-top--slide-down {
-  animation-name: pop-from-top-show-hide;
-  animation-duration: 4s;
-  animation-timing-function: ease-in-out;
-  animation-direction: normal;
-  animation-fill-mode: forwards;
-}
-
-@keyframes pop-from-top-show-hide {
-  0% {
-    top: $popFromTop-topPosition;
-  }
-  20% {
-    top: 0;
-  }
-  80% {
-    top: 0;
-  }
-  100% {
-    top: $popFromTop-topPosition;
-  }
-}
-
-@keyframes pop-from-topHide {
-  0% {
-    top: 50px;
-  }
-  100% {
-    top: 0;
-  }
-}
-
-/***************************************************************
- * Table
- */
-
-.table__filter__input {
-  border-radius: $border-radius;
-  border: 1px solid $input-border-color;
-
-  min-height: 0;
-  line-height: 0;
-  padding: 0.6em;
-}
-
-.table__body {
-  //table-layout: fixed;
-  margin: 20px 0 0 0;
-  cellpadding: 10px;
-}
-
-.table__body__header {
-  text-align: left;
-  display: inline-grid;
-  padding: 3px 3px;
-}
-
-.table__body__header__row {
-  font-size: 1.1em;
-  text-decoration: none;
-}
-
-.table__body__header__row__cell a {
-  text-decoration: none;
-}
-
-.table__body__rows {
-  font-size: 0.84em;
-}
-
-.table__body__rows__row {
-  font-size: 1em;
-  padding: 0.3em 0.3em;
-  cursor: pointer;
-}
-
-.table__body__rows__row:nth-child(even) {
-  background-color: #f2f2f2
-}
-
-.table__body__rows__row__cell {
-  border: 1px solid lightgray;
-  padding: 10px 10px;
-}
-
-.table__body__rows__row:hover {
-  outline: 1px solid cornflowerblue;
 }
 

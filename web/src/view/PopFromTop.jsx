@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import * as C from "../common/constants.js";
 
 const commentPre = "====> InfoModal:";
 
@@ -17,8 +18,16 @@ export default class InfoModal extends Component {
      */
 
     render() {
-        const willDisplay = this.props.willDisplay;
+        let willDisplay = false;
 
+         switch (this.props.statusCode) {
+             case C.REGISTRATION_SUCCESS :
+             case C.REGISTRATION_ERROR:
+                 willDisplay = true;
+                 break;
+             default:
+                 willDisplay = false;
+         }
 
         if(willDisplay){
             // https://css-tricks.com/restart-css-animation/

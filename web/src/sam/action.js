@@ -1,59 +1,85 @@
+import * as modelHandler from './modelHandler';
 import * as C from "../common/constants.js";
 import * as U from "../common/utils";
 import * as selectOne from "../data/select_one.js";
 import * as db from '../db/registration';
+import model from "../data/model";
 
+let M = {};
 const commentPre = "aaaa> SAMAction:";
 
-let A = {};
 
-export function init(modelHandler) {
-    A.modelHandler = modelHandler;
+export function init(){
+    M.model = model();
+    M.model.statusCode = C.REGISTRATION_INIT;
+
+    navigatePageRegistration();
 }
 
 /***************************************************************
  * Navigation
  */
 
-export function navigate(page) {
-    if (page === C.PAGE_REGISTRATION) {
-        A.modelHandler.presentRegistration();
-    } else if (page === C.PAGE_LIST) {
-        A.modelHandler.presentList(db.getRegistrations());
-    }
+export function navigatePageRegistration() {
+    M.model.page = C.PAGE_REGISTRATION;
+    modelHandler.presentRegistration(enrichRegistration(M.model));
+}
+
+export function navigatePageRegistrationList() {
+    M.model.page = C.PAGE_LIST;
+    M.model.list.rowsAll = db.getRegistrations();
+    modelHandler.presentList(M.model);
 }
 
 /***************************************************************
  * Registration
  */
 
-export function registrationNew(model) {
-    A.modelHandler.presentRegistrationNew(enrichDataModel(model));
-}
-
-export function registrationFormUpdate(key) {
+export function formUpdate(key) {
     return (e) => {
-        A.modelHandler.presentRegistrationFormUpdate(key, e.target);
+        if (e.target.type == C.INPUT_CHECKBOX) {
+            M.model.registration[key] = e.target.checked ? 'true' : 'false';
+        } else {
+            M.model.registration[key] = e.target.value;
+        }
+
+        modelHandler.presentRegistrationFormUpdate(M.model);
     };
 }
 
-export function registrationSubmit() {
-    A.modelHandler.presentRegistrationSubmit();
+export function registrationCreate() {
+    modelHandler.presentRegistrationCreate(M.model);
 }
 
-function enrichDataModel(model) {
-    model.selectOne = selectOne;
-    return model;
+function enrichRegistration() {
+    M.model.selectOne = selectOne;
+    return M.model;
 }
 
 /***************************************************************
- * List
+ * Registration list
  */
 
 export function filterTable(filterText) {
-    A.modelHandler.presentListFilter(filterText);
+    M.model.list.filterText = filterText;
+    modelHandler.presentListFilter(M.model);
 }
 
 export function sortTable(sortColumn, sortDir) {
-    A.modelHandler.presentListSort(sortColumn, sortDir);
+    M.model.list.sortColumn = sortColumn;
+    M.model.list.sortDir = sortDir;
+    modelHandler.presentListSort(M.model);
+}
+
+// Details modal
+export function listShowDetails(isShow) {
+    return (dbId) => {
+        return () => {
+            M.model.list.selectedRow = Object.assign({}, this.props.model.list.rows.filter((row) => {
+                return row.id === dbId;
+            })[0]);
+
+            modelHandler.presentList(M.model);
+        }
+    }
 }

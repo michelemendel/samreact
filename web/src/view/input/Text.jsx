@@ -23,7 +23,7 @@ export default class Text extends Component {
                        id={this.props.id}
                        placeholder={this.props.placeholder}
                        value={this.props.val ? this.props.val : ''}
-                       onChange={this.props.action.registrationFormUpdate(this.props.id)}
+                       onChange={this.props.action.formUpdate(this.props.id)}
                 />
 
                 {this.displayErrorMsg(this.props.error)}

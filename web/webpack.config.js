@@ -4,6 +4,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 
+console.log('src:', path.resolve('./src'));
+
 var config = {
     entry: './src/app.js',
 

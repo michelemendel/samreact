@@ -15,7 +15,7 @@ export default class Selection extends Component {
 
     constructor(props) {
         super(props);
-        this.formUpdate = this.props.action.registrationFormUpdate(props.id);
+        this.formUpdate = this.props.action.formUpdate(props.id);
         this.loadFn = this.props.loadFunction;
     }
 

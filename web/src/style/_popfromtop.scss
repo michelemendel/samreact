@@ -1,0 +1,51 @@
+/***************************************************************
+ * Pop-From-Top
+ * Information box that pops in from the top and leaves after
+ * a specific time.
+ */
+
+$popFromTop-topPosition: -65px;
+
+.pop-from-top {
+  position: fixed;
+  z-index: 200;
+  top: $popFromTop-topPosition;
+  left: 0;
+  right: 0;
+  text-align: center;
+  border-radius: 0;
+  box-shadow: 0 0 5px black;
+  opacity: 0.9;
+}
+
+.pop-from-top--slide-down {
+  animation-name: pop-from-top-show-hide;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+}
+
+@keyframes pop-from-top-show-hide {
+  0% {
+    top: $popFromTop-topPosition;
+  }
+  20% {
+    top: 0;
+  }
+  80% {
+    top: 0;
+  }
+  100% {
+    top: $popFromTop-topPosition;
+  }
+}
+
+@keyframes pop-from-topHide {
+  0% {
+    top: 50px;
+  }
+  100% {
+    top: 0;
+  }
+}

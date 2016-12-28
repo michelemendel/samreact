@@ -1,0 +1,26 @@
+/***************************************************************
+ * Navigation
+ */
+
+.nav {
+  position: relative;
+}
+
+.nav--bottom {
+  display: flex;
+  position: absolute;
+  bottom: 1px;
+}
+
+.nav__button {
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.nav__button__registration:after {
+  content: 'Registration';
+}
+
+.nav__button__list:after {
+  content: 'List';
+}

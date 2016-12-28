@@ -1,50 +1,33 @@
 import React from "react";
+import * as stateController from './stateController';
 import * as C from "../common/constants.js";
 import * as U from "../common/utils";
 import * as db from '../db/registration';
 
 const commentPre = "mmmm> modelHandler:";
 
-let M = {};
-
-export function init(stateController) {
-    M.stateController = stateController;
-}
-
 /***************************************************************
  * Registration
  */
 
-export function presentRegistrationNew(model) {
-    M.model = model;
-    M.stateController.registrationNew(model);
+export function presentRegistration(model) {
+    stateController.registration(model);
 }
 
-export function presentRegistration() {
-    M.stateController.registration(M.model);
+export function presentRegistrationFormUpdate(model) {
+    stateController.registrationFormUpdate(model);
 }
 
-// presentRegistrationFormUpdate : key, target -> *
-export function presentRegistrationFormUpdate(key, target) {
-    if (target.type == C.INPUT_CHECKBOX) {
-        M.model.registration[key] = target.checked ? 'true' : 'false';
-    } else {
-        M.model.registration[key] = target.value;
-    }
-
-    M.stateController.registrationFormUpdate(M.model);
-}
-
-export function presentRegistrationSubmit() {
-    validate(M.model.registration)
+export function presentRegistrationCreate(model) {
+    validate(model.registration)
         .then(() => {
-            db.addRegistration(M.model.registration);
-            M.model.registration.specificErrorMessages = {};
-            M.stateController.registrationSubmit(M.model);
+            db.addRegistration(model.registration);
+            model.registration.specificErrorMessages = {};
+            stateController.registrationCreate(model);
         })
         .catch((validatedRes) => {
-            M.model.registration.specificErrorMessages = validatedRes;
-            M.stateController.registrationSubmit(M.model);
+            model.registration.specificErrorMessages = validatedRes;
+            stateController.registrationCreate(model);
         });
 }
 
@@ -64,27 +47,22 @@ export function validate(registration) {
  * List
  */
 
-export function presentList(list) {
-    M.model.listFull = list;
+export function presentList(model) {
+    model.list.rows = listSort(
+        listFilter(model.list.rowsAll, C.DEFAULT_COLS_TO_FILTER_BY, model.list.filterText),
+        model.list.sortColumn, model.list.sortDir);
 
-    M.model.list = listSort(
-        listFilter(list, C.DEFAULT_COLS_TO_FILTER_BY, M.model.filterText),
-        M.model.sortColumn, M.model.sortDir);
-
-    M.stateController.list(M.model);
+    stateController.list(model);
 }
 
-export function presentListFilter(filterText) {
-    M.model.filterText = filterText;
-    M.model.list = listFilter(M.model.listFull, C.DEFAULT_COLS_TO_FILTER_BY, filterText);
-    M.stateController.list(M.model);
+export function presentListFilter(model) {
+    model.list.rows = listFilter(model.list.rowsAll, C.DEFAULT_COLS_TO_FILTER_BY, model.list.filterText);
+    stateController.list(model);
 }
 
-export function presentListSort(sortColumn, sortDir) {
-    M.model.sortColumn = sortColumn;
-    M.model.sortDir = sortDir;
-    M.model.list = listSort(M.model.list, sortColumn, sortDir);
-    M.stateController.list(M.model);
+export function presentListSort(model) {
+    model.list.rows = listSort(model.list.rowsAll, model.list.sortColumn, model.list.sortDir);
+    stateController.list(model);
 }
 
 /**

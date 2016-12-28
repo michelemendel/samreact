@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import * as action from '../sam/action';
 import * as U from "../common/utils";
 import * as C from "../common/constants";
 import DatePicker from "react-datepicker";
@@ -29,7 +30,8 @@ export default class RegistrationContent extends Component {
      * Render
      */
 
-    handleDate(updateForm) {
+    handleDate() {
+        const updateForm = action.formUpdate('date')
         return (selectedDate) => {
             updateForm({target: {type: 'date', value: U.date2String(selectedDate)}});
         }
@@ -53,7 +55,7 @@ export default class RegistrationContent extends Component {
                             <DatePicker
                                 className="form__input__field"
                                 selected={U.parseDate(registration.date)}
-                                onChange={this.handleDate(this.props.action.registrationFormUpdate('date'))}
+                                onChange={this.handleDate()}
                                 dateFormat="YYYY-MM-DD" //YYYY-MM-DDThh:mm:ss
                                 todayButton="idag"
                                 maxDate={U.maxDateIsToday()}
@@ -68,7 +70,7 @@ export default class RegistrationContent extends Component {
                            values={{'true': 'Yes', 'false': 'No'}}
                            checkedVal={registration.aOrB || 'false'}
                            error={specificError.aOrB}
-                           action={this.props.action}
+                           action={action}
                     />
                 </div>
 
@@ -78,7 +80,7 @@ export default class RegistrationContent extends Component {
                                className="form__row__input--width-full"
                                value={registration.selectOne}
                                error={specificError.selectOne}
-                               action={this.props.action}
+                               action={action}
                                behaviour={[false, false, false, true]} // See explanation in Selection.js
                                loadFunction={m.selectOne}
                                useSpinner={true}/>
@@ -90,7 +92,7 @@ export default class RegistrationContent extends Component {
                           placeholder="Som text"
                           val={registration.informationText}
                           error={specificError.informationText}
-                          action={this.props.action}
+                          action={action}
                           className="form__row__input--width-full"/>
                 </div>
 

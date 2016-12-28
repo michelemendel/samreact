@@ -1,9 +1,11 @@
 import React, {Component} from "react";
 import ReactDOM from "react-dom";
-import * as consts from "../common/constants.js";
+import * as action from '../sam/action';
+import * as C from "../common/constants.js";
 import * as U from "../common/utils";
 import Registration from "./Registration.jsx";
 import List from "./List.jsx";
+import PopFromTop from "./PopFromTop.jsx";
 
 class View extends Component {
 
@@ -19,10 +21,15 @@ class View extends Component {
      * Event handlers
      */
 
-    handleTabClick(page) {
+    navigate(page) {
         return (e) => {
             e.preventDefault();
-            this.props.action.navigate(page);
+
+            if (page === C.PAGE_REGISTRATION) {
+                action.navigatePageRegistration();
+            } else if (page === C.PAGE_LIST) {
+                action.navigatePageRegistrationList()
+            }
         }
     }
 
@@ -40,12 +47,12 @@ class View extends Component {
 
                 <div className="page__header">
                     <div className="page__header__title">
-                        Sam & React
+                        SAM & React
                     </div>
                     <div className="nav">
                         <div className="nav--bottom">
-                            {this.showTab(this.props, consts.PAGE_REGISTRATION)}
-                            {this.showTab(this.props, consts.PAGE_LIST)}
+                            {this.showNavButton(this.props, C.PAGE_REGISTRATION)}
+                            {this.showNavButton(this.props, C.PAGE_LIST)}
                         </div>
                     </div>
 
@@ -56,18 +63,28 @@ class View extends Component {
                     {showPageContent(this.props)}
                 </div>
 
+                {/* Info */}
+                {this.showInfoBox(this.props)}
             </div>
         );
     }
 
-    showTab(props, page) {
+    showNavButton(props, page) {
         const selectedPage = this.props.model.page;
 
         return <button
-            onClick={this.handleTabClick(page)}
+            onClick={this.navigate(page)}
             className={('nav__button__' + page) + ' no-print ' + (page === selectedPage ? 'active' : '') + ' ' + 'nav__button'}
         />
     }
+
+    showInfoBox(props) {
+        return <PopFromTop
+            title={props.model.generalMessage}
+            statusCode={this.props.model.statusCode}
+        />;
+    }
+
 }
 
 
@@ -80,16 +97,15 @@ function showPageContent(props) {
     let component = 'undefined';
 
     switch (props.model.page) {
-    case consts.PAGE_REGISTRATION:
+    case C.PAGE_REGISTRATION:
         component = Registration;
         break;
-    case consts.PAGE_LIST:
+    case C.PAGE_LIST:
         component = List;
         break;
     }
 
     return React.createElement(component, {
-        action: props.action,
         model: props.model
     });
 }
@@ -98,13 +114,12 @@ function showPageContent(props) {
  * The root of the view tree
  */
 
-export function getRoot(action) {
+export function getRoot() {
     let stateRepresentation = document.getElementById('app');
 
     return (model) => {
         ReactDOM.render(
             <View
-                action={action}
                 model={model}
             />,
             stateRepresentation

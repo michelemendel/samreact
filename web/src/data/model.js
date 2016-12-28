@@ -10,12 +10,20 @@ export default function model() {
             informationText: C.UNSELECTED_FIELD,  //text : string
             specificErrorMessages: {}
         },
-        list: [],
-        sortColumn: "date", // Initial sorting
-        sortDir: C.SORT_DIR_DESC,
-        filterText: "",
+
         statusCode: C.REGISTRATION_INIT,
-        generalMessage: ""
+        generalMessage: "",
+
+        list: {
+            rowsAll: [],
+            rows: [],
+            sortColumn: "date", // Initial sorting
+            sortDir: C.SORT_DIR_DESC,
+            filterText: "",
+            showDetails: false,
+            showDetailsEditable: false,
+            selectedRow: ""
+        }
     };
 }
 
