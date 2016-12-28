@@ -79,7 +79,7 @@ export function list(model) {
  */
 
 function presentModel(model) {
-    // console.clear(); console.log('MODEL', U.pp(model));
+    console.clear(); console.log('MODEL', U.pp(model));
 
     S.view(model);
 }
