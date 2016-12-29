@@ -1,11 +1,10 @@
 import React, {Component} from "react";
 import * as action from '../sam/action';
 import * as U from "../common/utils";
-import * as C from "../common/constants";
 import DatePicker from "react-datepicker";
 import Radio from "./input/Radio.jsx";
 import Text from "./input/Text.jsx";
-import Selection from "./input/Selection.jsx"; //https://hacker0x01.github.io/react-datepicker/
+import SelectionSimple from "./input/SelectionSimple.jsx";
 
 const commentPre = "====> RegistrationContent:",
     inputErrorClass = 'form__input--error';
@@ -50,7 +49,7 @@ export default class RegistrationContent extends Component {
             <div>
 
                 <div className="form__row">
-                        <span className="form__input form__row__input--width-third">
+                        <span>
                             <label className="form__input__label" htmlFor="dato">Dato</label>
                             <DatePicker
                                 className="form__input__field"
@@ -75,15 +74,15 @@ export default class RegistrationContent extends Component {
                 </div>
 
                 <div className="form__row">
-                    <Selection id="selectOne"
-                               title="Choose"
-                               className="form__row__input--width-full"
-                               value={registration.selectOne}
-                               error={specificError.selectOne}
-                               action={action}
-                               behaviour={[false, false, false, true]} // See explanation in Selection.js
-                               loadFunction={m.selectOne}
-                               useSpinner={true}/>
+                    <SelectionSimple
+                        id="selectOne"
+                        title="Choose"
+                        value={registration.selectOne}
+                        loadOptionsFn={m.selectOne}
+                        placeholder="You may choose one"
+                        error={specificError.selectOne}
+                        invalidateCache={m.invalidateCache}
+                        updateFn={action.formUpdate}/>
                 </div>
 
                 < div className="form__row">
@@ -93,7 +92,7 @@ export default class RegistrationContent extends Component {
                           val={registration.informationText}
                           error={specificError.informationText}
                           action={action}
-                          className="form__row__input--width-full"/>
+                          className="form__element--width-full"/>
                 </div>
 
             </div>

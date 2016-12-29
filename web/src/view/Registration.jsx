@@ -41,7 +41,8 @@ export default class Registration extends Component {
                         model={this.props.model}
                     />
 
-                    <button className="form__submit__button" type="submit" onClick={(e) => this.submitForm(e)}>Save</button>
+                    <button className="button" type="submit" onClick={(e) => this.submitForm(e)}>Save</button>
+                    <button className="button" type="button" onClick={action.registrationReset}>Reset</button>
                 </form>
 
             </div>

@@ -1,0 +1,51 @@
+.button {
+  position: relative;
+  display: inline-block;
+  border-radius: 2px;
+  border: 1px solid $input-border-color;
+  padding: 8px 25px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 0;
+}
+
+.button:not(:last-child) {
+  margin-right: 0.5rem;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:active {
+  background-color: $lightGrey;
+}
+
+.button--full-width {
+  width: 100%;
+}
+
+.button--pos-bottom-right {
+  position: absolute;
+  right: 0;
+  bottom: 5px;
+}
+
+.button--pos-bottom-left {
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+}
+
+.button--pos-top-left {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.button--pos-top-right {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+

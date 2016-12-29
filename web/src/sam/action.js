@@ -35,6 +35,19 @@ export function navigatePageRegistrationList() {
  * Registration
  */
 
+export function registrationReset() {
+    M.model.registration = model(C.MODEL_REGISTRATION_RESET);
+    // M.model.statusCode = C.REGISTRATION_INIT;
+
+    navigatePageRegistration();
+}
+
+export function statusReset() {
+    console.log('Reset');
+    M.model.statusCode = C.REGISTRATION_INIT;
+    modelHandler.presentRegistration(M.model);
+}
+
 export function formUpdate(key) {
     return (e) => {
         if (e.target.type == C.INPUT_CHECKBOX) {
@@ -50,6 +63,8 @@ export function formUpdate(key) {
 export function registrationCreate() {
     modelHandler.presentRegistrationCreate(M.model);
 }
+
+
 
 function enrichRegistration() {
     M.model.selectOne = selectOne;
@@ -75,7 +90,7 @@ export function sortTable(sortColumn, sortDir) {
 export function listShowDetails(isShow) {
     return (dbId) => {
         return () => {
-            M.model.list.selectedRow = Object.assign({}, this.props.model.list.rows.filter((row) => {
+            M.model.list.selectedRow = Object.assign({}, M.model.list.rows.filter((row) => {
                 return row.id === dbId;
             })[0]);
 

@@ -15,7 +15,7 @@ export function presentRegistration(model) {
 }
 
 export function presentRegistrationFormUpdate(model) {
-    stateController.registrationFormUpdate(model);
+    stateController.renderModel(model);
 }
 
 export function presentRegistrationCreate(model) {
@@ -23,11 +23,11 @@ export function presentRegistrationCreate(model) {
         .then(() => {
             db.addRegistration(model.registration);
             model.registration.specificErrorMessages = {};
-            stateController.registrationCreate(model);
+            stateController.registrationCreateSuccess(model);
         })
         .catch((validatedRes) => {
             model.registration.specificErrorMessages = validatedRes;
-            stateController.registrationCreate(model);
+            stateController.registrationCreateSuccess(model);
         });
 }
 
@@ -52,17 +52,17 @@ export function presentList(model) {
         listFilter(model.list.rowsAll, C.DEFAULT_COLS_TO_FILTER_BY, model.list.filterText),
         model.list.sortColumn, model.list.sortDir);
 
-    stateController.list(model);
+    stateController.renderModel(model);
 }
 
 export function presentListFilter(model) {
     model.list.rows = listFilter(model.list.rowsAll, C.DEFAULT_COLS_TO_FILTER_BY, model.list.filterText);
-    stateController.list(model);
+    stateController.renderModel(model);
 }
 
 export function presentListSort(model) {
     model.list.rows = listSort(model.list.rowsAll, model.list.sortColumn, model.list.sortDir);
-    stateController.list(model);
+    stateController.renderModel(model);
 }
 
 /**

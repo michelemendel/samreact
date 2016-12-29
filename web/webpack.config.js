@@ -4,7 +4,11 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 
+console.log('dirname:', __dirname);
 console.log('src:', path.resolve('./src'));
+console.log('assets:', path.resolve('./assets/'));
+console.log('icons:', path.resolve('./src/style/icons/'));
+
 
 var config = {
     entry: './src/app.js',
@@ -46,8 +50,8 @@ var config = {
                 loader: 'url-loader',
             },
             {
-                test: /\.(svg|woff|eot|ttf)/,
-                loader: 'file?name=[path][name]-[hash].[ext]'
+                test: /\.(svg|woff|eot|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                loader: 'file-loader'
             }
         ]
     },
@@ -63,8 +67,8 @@ var config = {
 
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            filename: '../index.html', // relativt i forhold til output.path (target/frontend-dist/assets)
-            inject: true // sett automatisk inn <link> og <script> elementer hvor nødvendig
+            filename: '../index.html', // Relative to output.path (target/frontend-dist/assets)
+            inject: true // Automatically insert <link> and <script> elements where necessary.
         }),
 
         new ExportFilesWebpackPlugin('../index.html', {

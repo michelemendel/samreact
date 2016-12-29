@@ -3,13 +3,9 @@ import * as U from "../common/utils";
 const REGISTRATION_KEY = 'registration_key';
 
 export function addRegistration(registration) {
-    // console.log('addRegistration:AA');
     checkRegistration();
-    // console.log('addRegistration:BB');
     const list = JSON.parse(get(REGISTRATION_KEY)).concat(registration);
-    // console.log('addRegistration:CC');
     set(REGISTRATION_KEY, JSON.stringify(list));
-    // console.log('addRegistration:DD');
 }
 
 export function getRegistrations() {
@@ -18,9 +14,7 @@ export function getRegistrations() {
 }
 
 function checkRegistration() {
-    // console.log('checkRegistration:AA');
     if (get(REGISTRATION_KEY) === "") {
-        // console.log('checkRegistration:BB');
         set(REGISTRATION_KEY, JSON.stringify([]));
     }
 }

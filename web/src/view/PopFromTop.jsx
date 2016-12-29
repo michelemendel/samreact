@@ -5,31 +5,19 @@ const commentPre = "====> InfoModal:";
 
 export default class InfoModal extends Component {
 
-    /***************************************************************
-     * Life-cycle events
-     */
-
-    constructor(props) {
-        super(props);
-    }
-
-    /***************************************************************
-     * Render
-     */
-
     render() {
         let willDisplay = false;
 
-         switch (this.props.statusCode) {
-             case C.REGISTRATION_SUCCESS :
-             case C.REGISTRATION_ERROR:
-                 willDisplay = true;
-                 break;
-             default:
-                 willDisplay = false;
-         }
+        switch (this.props.statusCode) {
+        case C.REGISTRATION_SUCCESS :
+        case C.REGISTRATION_ERROR:
+            willDisplay = true;
+            break;
+        default:
+            willDisplay = false;
+        }
 
-        if(willDisplay){
+        if (willDisplay) {
             // https://css-tricks.com/restart-css-animation/
             let element = document.getElementById("pop-from-top");
             element.classList.remove("pop-from-top--slide-down");
@@ -41,7 +29,7 @@ export default class InfoModal extends Component {
             <div id="pop-from-top" className={'pop-from-top ' + (willDisplay ? 'pop-from-top--slide-down' : '')}>
                 <h5>
                     <span className="icon-alert-round"></span>
-                    {this.props.title}
+                    &#9432; {this.props.title}
                 </h5>
             </div>
         )

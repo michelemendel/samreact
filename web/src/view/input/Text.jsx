@@ -15,7 +15,7 @@ export default class Text extends Component {
         const isError = U.isDef(this.props.error);
 
         return (
-            <div className={this.props.className} tabIndex={this.props.tabIdx}>
+            <span className="form__element--can-grow" tabIndex={this.props.tabIdx}>
                 <label className="form__input__label" htmlFor={this.props.id}>{this.props.title}</label>
 
                 <input type="text"
@@ -27,7 +27,7 @@ export default class Text extends Component {
                 />
 
                 {this.displayErrorMsg(this.props.error)}
-            </div>
+            </span>
         )
     }
 

@@ -1,0 +1,52 @@
+/***************************************************************
+ * Page
+ */
+
+.page {
+  margin: 0 auto;
+  width: 80%;
+  margin-top: 30px;
+}
+
+.page__header {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.page__header__title {
+  font-weight: bold;
+  font-size: 1.6rem;
+  margin-right: 20px;
+}
+
+.content--max-width {
+  width: 100%;
+}
+
+.icon-empty:before {
+  content: '\00a0\00a0';
+}
+
+.noSpaceTag {
+  display: none;
+}
+
+
+/***************************************************************
+ * Content
+ */
+
+.content {
+}
+
+.content__body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  max-width: 800px;
+
+  border: 1px none grey;
+  padding: 0.7em 0 0 0;
+}
+

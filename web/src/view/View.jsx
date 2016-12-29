@@ -47,6 +47,7 @@ class View extends Component {
 
                 <div className="page__header">
                     <div className="page__header__title">
+                        <span className="icon icon-mug"></span>
                         SAM & React
                     </div>
                     <div className="nav">

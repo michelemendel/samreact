@@ -13,43 +13,32 @@ const commentPre = "ssss> SAMState:";
  */
 
 export function registration(model) {
-    presentModel(model);
+    renderModel(model);
 }
 
-export function registrationFormUpdate(model) {
-    presentModel(model);
-}
-
-export function registrationCreate(model) {
+export function registrationCreateSuccess(model) {
     model.page = C.PAGE_REGISTRATION;
     model.statusCode = U.isObjEmpty(model.registration.specificErrorMessages)
         ? C.REGISTRATION_SUCCESS
         : C.REGISTRATION_VALIDATION_FAILED;
 
     if (model.statusCode == C.REGISTRATION_SUCCESS) {
+        model.generalMessage = C.REGISTRATION_SUCCESS_MESSAGE;
         napNewRegistration();
     } else {
-        presentModel(model);
+        renderModel(model);
     }
 }
 
-// Next Action Predicate
-function napNewRegistration() {
-    let m = model();
 
-    m.statusCode = C.REGISTRATION_SUCCESS;
-    m.generalMessage = C.REGISTRATION_SUCCESS_MESSAGE;
-
-    action.registrationNew(m);
-}
-
-
-/***************************************************************
- * List
+/****************************************************************
+ * Next Action Predicates
  */
 
-export function list(model) {
-    presentModel(model);
+function napNewRegistration() {
+    console.log('NAP');
+    setTimeout(action.statusReset, 4000); // Longer than animation-duration in _popfromtop.scss
+    action.registrationReset();
 }
 
 
@@ -57,9 +46,9 @@ export function list(model) {
  * Pipe to view to have a single place before view to view the model
  */
 
-function presentModel(model) {
+export function renderModel(model) {
     // console.clear();
-    console.log(U.pp(model));
+    // console.log(U.pp(model));
     view(model);
 }
 

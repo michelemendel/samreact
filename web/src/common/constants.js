@@ -1,10 +1,9 @@
-/***************************************************************
- * Misc
+/****************************************************************
+ * Model
  */
-export const LOCALE = 'nb_NO';
-export const UNDEFINED = 'undefined';
-export const INVALIDATE_CACHE_YES = true;
-export const INVALIDATE_CACHE_NO = false;
+
+export const MODEL_PREFILLED_NONE = 'prefilled_none';
+export const MODEL_REGISTRATION_RESET = 'registration_reset';
 
 
 /***************************************************************
@@ -33,11 +32,10 @@ export const INPUT_DATE = 'date';
  */
 
 // States
-export const REGISTRATION_INIT = 'registration init';
-export const REGISTRATION_SUCCESS = 'registration success';
-export const REGISTRATION_VALIDATION_FAILED = 'registration validation failed';
-export const REGISTRATION_ERROR = 'registration general error';
-export const LIST_INIT = 'list init';
+export const REGISTRATION_INIT = 'registration_init';
+export const REGISTRATION_SUCCESS = 'registration_success';
+export const REGISTRATION_VALIDATION_FAILED = 'registration_validation_failed';
+export const REGISTRATION_ERROR = 'registration_general_error';
 
 // Messages
 export const REGISTRATION_SUCCESS_MESSAGE = 'Your registration was successful';
@@ -61,4 +59,13 @@ export const LIST_DETAILS_HIDE = false;
 export const LIST_DETAILS_EDITABLE_SHOW = true;
 export const LIST_DETAILS_EDITABLE_HIDE = false;
 
+
+/***************************************************************
+ * Misc
+ */
+export const LOCALE = 'nb_NO';
+export const UNDEFINED = 'undefined';
+export const INVALIDATE_CACHE = 'invalidateCache';
+export const INVALIDATE_CACHE_YES = true;
+export const INVALIDATE_CACHE_NO = false;
 

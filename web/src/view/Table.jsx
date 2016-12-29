@@ -18,11 +18,6 @@ export default class Table extends Component {
 
     constructor(props) {
         super(props);
-
-        // Details modal
-        this.modal = {
-            show: false
-        };
     }
 
 
@@ -51,6 +46,42 @@ export default class Table extends Component {
             : this.props.model.list.sortColumn === sortColumn
             ? flipSortDir(this.props.model.list.sortDir)
             : consts.SORT_DIR_ASC;
+    }
+
+
+    headCell(i, key, text, model) {
+        // console.log(commentPre + ":", key, text);
+
+        let sortIcon = model.list.sortColumn !== key ?
+            sortEmpty :
+            model.list.sortDir == consts.SORT_DIR_ASC ?
+                sortAscIcon :
+                sortDescIcon;
+
+        return <th className="table__body__header__row__cell" style={this.colStyle(key)} key={i}
+                   onClick={this.handleSortChange(key)}>
+            <a href="#">{text}<span className={sortIcon}/></a>
+        </th>
+    }
+
+    colStyle(key) {
+        const ws = {
+            date: {width: '35%'},
+            aOrB: {width: '20%'},
+            selectOne: {width: '20%'},
+            informationText: {width: '25%'}
+        };
+
+        return ws[key];
+    }
+
+    showModal() {
+        if (!this.props.model.list.showDetails) { return; }
+
+        return <Details
+            cancel={this.cancel()}
+            list={this.modal.list}
+        />;
     }
 
     /***************************************************************
@@ -117,40 +148,5 @@ export default class Table extends Component {
 
             </div>
         )
-    }
-
-    headCell(i, key, text, model) {
-        // console.log(commentPre + ":", key, text);
-
-        let sortIcon = model.list.sortColumn !== key ?
-            sortEmpty :
-            model.list.sortDir == consts.SORT_DIR_ASC ?
-                sortAscIcon :
-                sortDescIcon;
-
-        return <th className="table__body__header__row__cell" style={this.colStyle(key)} key={i}
-                   onClick={this.handleSortChange(key)}>
-            <a href="#">{text}<span className={sortIcon}/></a>
-        </th>
-    }
-
-    colStyle(key) {
-        const ws = {
-            date: {width: '35%'},
-            aOrB: {width: '20%'},
-            selectOne: {width: '20%'},
-            informationText: {width: '25%'}
-        };
-
-        return ws[key];
-    }
-
-    showModal() {
-        if (!this.props.model.list.showDetails) { return; }
-
-        return <Details
-            cancel={this.cancel()}
-            list={this.modal.list}
-        />;
     }
 }

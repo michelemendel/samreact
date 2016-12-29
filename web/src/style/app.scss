@@ -13,90 +13,20 @@
  *
  */
 
-$media-big: 980px;
-$media-small: 668px;
-$border-radius: 0.25em;
-$input-border-color: #a8a8a8;
+//$image-path: "images/";
+$icon-font-path: "icons/";
 
 //@import '~css-reset-and-normalize/css/reset-and-normalize.min.css';
 @import '~css-reset-and-normalize/css/flavored-reset-and-normalize.min.css';
+
+@import "constants";
+@import "colors";
+@import "icons/icomoon";
+@import "basic-html";
+
+@import 'layout';
 @import 'navigation';
 @import 'form';
 @import 'table';
-@import '~react-datepicker/dist/react-datepicker.css';
-@import 'datepicker-mod';
-@import 'rc-select-mod';
 @import 'popfromtop';
 @import 'details-and-print';
-
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Courier', sans-serif;
-  font-size: 16px;
-}
-
-/***************************************************************
- * Page
- */
-
-.page {
-  margin: 0 auto;
-  width: 80%;
-  margin-top: 30px;
-}
-
-.page__header {
-  display: flex;
-  margin-bottom: 20px;
-}
-
-.page__header__title {
-  font-weight: bold;
-  font-size: 1.6rem;
-  margin-right: 20px;
-}
-
-.content--max-width {
-  width: 100%;
-}
-
-.icon-empty:before {
-  content: '\00a0\00a0';
-}
-
-.noSpaceTag {
-  display: none;
-}
-
-
-/***************************************************************
- * Content
- */
-
-.content {
-}
-
-.content__body {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  max-width: 800px;
-
-  border: 1px none grey;
-  padding: 0.7em 0 0 0;
-}
-
-
-
-/***************************************************************
- * Selection component
- */
-
-.selection {
-  position: relative;
-}
-

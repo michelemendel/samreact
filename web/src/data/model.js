@@ -1,18 +1,23 @@
 import * as U from "../common/utils";
 import * as C from "../common/constants";
 
-export default function model() {
+export default function model(mode = C.MODEL_PREFILLED_NONE) {
+    switch (mode) {
+    case C.MODEL_REGISTRATION_RESET :
+        return registrationInit();
+        break;
+    default:
+        return modelBasic();
+    }
+}
+
+function modelBasic() {
     return {
-        registration: {
-            date: U.today(),                     //text : string
-            aOrB: C.UNSELECTED_RADIO_BUTTON,     //radio : string, values=['true', 'false', '-']
-            selectOne: C.UNSELECTED_FIELD,       //dropdown : string
-            informationText: C.UNSELECTED_FIELD,  //text : string
-            specificErrorMessages: {}
-        },
+        registration: registrationInit(),
 
         statusCode: C.REGISTRATION_INIT,
         generalMessage: "",
+        invalidateCache:C.INVALIDATE_CACHE_NO,
 
         list: {
             rowsAll: [],
@@ -25,5 +30,15 @@ export default function model() {
             selectedRow: ""
         }
     };
+}
+
+function registrationInit() {
+    return {
+        date: U.today(),                     //text : string
+        aOrB: C.UNSELECTED_RADIO_BUTTON,     //radio : string, values=['true', 'false', '-']
+        selectOne: C.UNSELECTED_FIELD,       //dropdown : string
+        informationText: C.UNSELECTED_FIELD,  //text : string
+        specificErrorMessages: {}
+    }
 }
 

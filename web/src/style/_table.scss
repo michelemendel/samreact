@@ -3,12 +3,10 @@
  */
 
 .table__filter__input {
-  border-radius: $border-radius;
   border: 1px solid $input-border-color;
-
   min-height: 0;
   line-height: 0;
-  padding: 0.6em;
+  padding: 0.3em;
 }
 
 .table__body {
@@ -24,7 +22,7 @@
 }
 
 .table__body__header__row {
-  font-size: 1.1em;
+  font-size: $font-size;
   text-decoration: none;
 }
 
@@ -33,11 +31,10 @@
 }
 
 .table__body__rows {
-  font-size: 0.84em;
+  font-size: $font-size;
 }
 
 .table__body__rows__row {
-  font-size: 1em;
   padding: 0.3em 0.3em;
   cursor: pointer;
 }

@@ -1,0 +1,84 @@
+/****************************************************************
+ * Simple select
+ */
+
+// Constants (from react-select)
+$select-hover-bg-color: hsla(210, 100%, 50%, 0.08);
+$select-color: #383838;
+$select-arrow-color: #999;
+$select-arrow-width: 5px;
+
+.simple-select {
+  font-size: $font-size;
+  width: 100%;
+}
+
+/****************************************************************
+ * Input
+ */
+
+.simple-select__input__wrapper {
+  position: relative;
+  display: table;
+}
+
+// CSS triangle
+.simple-select__input__wrapper:after {
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  right: 10px;
+  top: 10px;
+  border-color: $select-arrow-color transparent transparent transparent;
+  border-style: solid;
+  border-width: $select-arrow-width $select-arrow-width ($select-arrow-width / 2) $select-arrow-width;
+  pointer-events: none; // Click through arrow
+}
+
+.simple-select__input {
+  position: relative;
+  cursor: default;
+  font-size: $font-size;
+  padding: 0.3rem;
+
+}
+
+/****************************************************************
+ * Select with ul and li:s
+ */
+
+.simple-select__select__wrapper {
+  position: absolute;
+  width: 100%;
+  background-color: white;
+  z-index: 200;
+  top: 25px;
+}
+
+.simple-select__select__ul {
+  border: 1px solid $mediumGrey;
+  min-height: 0;
+  max-height: 12rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.simple-select__select__li {
+  font-size: $font-size;
+  color: $select-color;
+  line-height: 1.2rem;
+  padding: 0.3rem 0 0.3rem 0.4rem;
+}
+
+.simple-select__select__li:hover {
+  background-color: $select-hover-bg-color;
+  cursor: pointer;
+}
+
+.simple-select__select__li--selected{
+  background-color: $select-hover-bg-color;
+}
+
+
+

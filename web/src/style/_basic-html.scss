@@ -1,0 +1,55 @@
+/****************************************************************
+ * Basic HTML
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100vw; // Fixes page from jumping slightly when scroll-bar appears.
+}
+
+body {
+  font-family: 'Courier', sans-serif;
+  font-size: 16px;
+}
+
+h1, h2, h3, h4, h5 {
+  vertical-align: baseline;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-size: 2.0em;
+  line-height: 1.0em;
+}
+
+h2 {
+  font-size: 1.6em;
+  line-height: 1.0em;
+}
+
+h3 {
+  font-size: 1.4em;
+  font-weight: normal;
+  line-height: 1.0em;
+}
+
+h4 {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  line-height: 1.5em;
+}
+
+h5 {
+  margin-bottom: 0;
+  line-height: 2.0em;
+}
+
+p {
+  margin: 0 0 2em 0;
+  max-width: 40em;
+  //  max-width: none;
+}
+
