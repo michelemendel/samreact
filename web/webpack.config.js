@@ -1,8 +1,8 @@
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var ExportFilesWebpackPlugin = require('export-files-webpack-plugin');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var webpack = require('webpack');
-var path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExportFilesWebpackPlugin = require('export-files-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
 
 console.log('dirname:', __dirname);
 console.log('src:', path.resolve('./src'));
@@ -10,17 +10,20 @@ console.log('assets:', path.resolve('./assets/'));
 console.log('icons:', path.resolve('./src/style/icons/'));
 
 
-var config = {
+const config = {
     entry: './src/app.js',
 
     output: {
-        path: 'target/frontend-dist/assets',
         filename: 'bundle.js',
-        publicPath: './assets/'
+        path: 'target',
+        publicPath: '' // If you use some path, like / or /assets, you have to use a web server.
     },
 
     devServer: {
+        port: 9090,
         stats: 'errors-only',
+        colors: true,
+        inline: true
     },
 
     resolve: {
@@ -50,7 +53,7 @@ var config = {
                 loader: 'url-loader',
             },
             {
-                test: /\.(svg|woff|eot|ttf)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+                test: /\.(svg|woff|eot|ttf)$/,
                 loader: 'file-loader'
             }
         ]
@@ -67,12 +70,12 @@ var config = {
 
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            filename: '../index.html', // Relative to output.path (target/frontend-dist/assets)
+            filename: './index.html', // Relative to output.path (target)
             inject: true // Automatically insert <link> and <script> elements where necessary.
         }),
 
-        new ExportFilesWebpackPlugin('../index.html', {
-            outputPath: 'target/frontend-dist/assets'
+        new ExportFilesWebpackPlugin('./index.html', {
+            outputPath: 'target'
         })
     ],
 };
