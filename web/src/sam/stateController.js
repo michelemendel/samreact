@@ -36,7 +36,6 @@ export function registrationCreateSuccess(model) {
  */
 
 function napNewRegistration() {
-    console.log('NAP');
     setTimeout(action.statusReset, 4000); // Longer than animation-duration in _popfromtop.scss
     action.registrationReset();
 }

@@ -13,6 +13,12 @@ export function getRegistrations() {
     return JSON.parse(get(REGISTRATION_KEY));
 }
 
+export function getOptions() {
+    checkRegistration();
+    return U.uniq(JSON.parse(get(REGISTRATION_KEY)).map((reg) => reg.selectOne))
+        .filter((reg) => reg !== "");
+}
+
 function checkRegistration() {
     if (get(REGISTRATION_KEY) === "") {
         set(REGISTRATION_KEY, JSON.stringify([]));

@@ -43,7 +43,6 @@ export function registrationReset() {
 }
 
 export function statusReset() {
-    console.log('Reset');
     M.model.statusCode = C.REGISTRATION_INIT;
     modelHandler.presentRegistration(M.model);
 }
@@ -63,8 +62,6 @@ export function formUpdate(key) {
 export function registrationCreate() {
     modelHandler.presentRegistrationCreate(M.model);
 }
-
-
 
 function enrichRegistration() {
     M.model.selectOne = selectOne;
