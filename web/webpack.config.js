@@ -1,14 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExportFilesWebpackPlugin = require('export-files-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 console.log('dirname:', __dirname);
-console.log('src:', path.resolve('./src'));
-console.log('assets:', path.resolve('/assets'));
-console.log('icons:', path.resolve('./src/style/icons'));
-
 
 const config = {
     entry: './src/app.js',
@@ -19,12 +14,12 @@ const config = {
     output: {
         filename: 'bundle.js',
         path: 'target',
-        publicPath: '' // If you use some path, like / or /assets, you have to use a web server.
+        publicPath: '' // If you use some path, like / or /assets, you have to use a web server or set public path in package.json.
     },
 
     devServer: {
         port: 9090,
-        stats: 'errors-only',
+        stats: 'minimal',
         colors: true,
         inline: true
     },
@@ -62,24 +57,16 @@ const config = {
         ]
     },
 
-    externals: {
-        'react/addons': true,
-        'react/lib/ExecutionEnvironment': true,
-        'react/lib/ReactContext': true
-    },
-
     plugins: [
+        // Extract CSS from bundle into it's own file.
         new ExtractTextPlugin('bundle.css'),
 
+        // Creates an index.html file.
         new HtmlWebpackPlugin({
             template: 'src/index.html',
             filename: './index.html', // Relative to output.path (target)
             inject: true // Automatically insert <link> and <script> elements where necessary.
         }),
-
-        new ExportFilesWebpackPlugin('./index.html', {
-            outputPath: 'target'
-        })
     ],
 };
 
