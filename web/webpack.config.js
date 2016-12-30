@@ -1,17 +1,20 @@
+const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExportFilesWebpackPlugin = require('export-files-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
-const path = require('path');
 
 console.log('dirname:', __dirname);
 console.log('src:', path.resolve('./src'));
-console.log('assets:', path.resolve('./assets/'));
-console.log('icons:', path.resolve('./src/style/icons/'));
+console.log('assets:', path.resolve('/assets'));
+console.log('icons:', path.resolve('./src/style/icons'));
 
 
 const config = {
     entry: './src/app.js',
+
+    // https://webpack.js.org/configuration/devtool/
+    devtool: 'eval-source-map',
 
     output: {
         filename: 'bundle.js',
