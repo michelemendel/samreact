@@ -5,7 +5,6 @@ export default function model(mode = C.MODEL_PREFILLED_NONE) {
     switch (mode) {
     case C.MODEL_REGISTRATION_RESET :
         return registrationInit();
-        break;
     default:
         return modelBasic();
     }
@@ -39,6 +38,6 @@ function registrationInit() {
         selectOne: C.UNSELECTED_FIELD,       //dropdown : string
         informationText: C.UNSELECTED_FIELD,  //text : string
         specificErrorMessages: {}
-    }
+    };
 }
 

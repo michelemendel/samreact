@@ -1,6 +1,6 @@
 import R from "ramda";
 import Flat from 'flat'; //https://github.com/hughsk/flat
-import * as C from './constants'
+import * as C from './constants';
 import moment from 'moment';
 
 const commentPre = "----> U:",
@@ -43,7 +43,7 @@ export function titleCase(s) {
             .split(' ')
             .filter((n) => n !== "")
             .join(' ')
-            .replace(/(^| |-)(.)/g, (c) => c.toUpperCase())
+            .replace(/(^| |-)(.)/g, (c) => c.toUpperCase());
 }
 
 // Only for single word text
@@ -63,13 +63,10 @@ export function translate(text) {
     switch (text) {
     case C.UNDEFINED:
         return '-';
-        break;
     case 'true':
         return 'Yes';
-        break;
     case 'false':
         return 'No';
-        break;
     default:
         return text;
     }

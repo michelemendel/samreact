@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 console.log('dirname:', __dirname);
 
 const config = {
-    entry: './src/app.js',
+    entry: ['./src/app.js'],
 
     // https://webpack.js.org/configuration/devtool/
     devtool: 'eval-source-map',
@@ -29,6 +29,16 @@ const config = {
     },
 
     module: {
+
+        preLoaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: 'jshint-loader'
+
+            }
+        ],
+
         loaders: [
             {
                 test: /\.jsx?$/,
@@ -55,10 +65,11 @@ const config = {
                 loader: 'file-loader'
             }
         ]
+
     },
 
     plugins: [
-        // Extract CSS from bundle into it's own file.
+        // Extracts CSS from bundle into it's own file.
         new ExtractTextPlugin('bundle.css'),
 
         // Creates an index.html file.

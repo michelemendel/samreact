@@ -1,7 +1,7 @@
 import * as modelHandler from './modelHandler';
-import * as C from "../common/constants.js";
+import * as C from "../common/constants";
 import * as U from "../common/utils";
-import * as selectOne from "../data/select_one.js";
+import * as selectOne from "../data/select_one";
 import * as db from '../db/registration';
 import model from "../data/model";
 
@@ -92,6 +92,6 @@ export function listShowDetails(isShow) {
             })[0]);
 
             modelHandler.presentList(M.model);
-        }
-    }
+        };
+    };
 }
