@@ -3,8 +3,8 @@
 *.log
 
 target/
-**/target/
-**/node_modules/
+web/public/
+node_modules/
 
 .idea/
 *.iml

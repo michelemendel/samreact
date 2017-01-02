@@ -6,15 +6,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 console.log('dirname:', __dirname);
 
 const config = {
-    entry: ['./src/app.js'],
+    entry: {
+        bundle: './src/app.js'
+    },
 
     // https://webpack.js.org/configuration/devtool/
     devtool: 'eval-source-map',
 
     output: {
-        filename: 'bundle.js',
-        path: 'target',
-        publicPath: '' // If you use some path, like / or /assets, you have to use a web server or set public path in package.json.
+        filename: '[name].js',
+        path: 'public'
+        //publicPath: '' // If you use some path, like / or /assets, you have to use a web server or set public path in package.json.
     },
 
     devServer: {
@@ -54,7 +56,10 @@ const config = {
             },
             {
                 test: /\.(scss|css)/,
-                loader: ExtractTextPlugin.extract('css?sourceMap!sass?sourceMap', {publicPath: ''})
+                loader: ExtractTextPlugin.extract(
+                    'css?sourceMap!sass?sourceMap',
+                    {publicPath: ''}
+                )
             },
             {
                 test: /\.(png|jpg|gif)$/,
@@ -69,13 +74,13 @@ const config = {
     },
 
     plugins: [
-        // Extracts CSS from bundle into it's own file.
+        // Extract CSS from bundle into it's own file.
         new ExtractTextPlugin('bundle.css'),
 
-        // Creates an index.html file.
+        // Create an index.html file.
         new HtmlWebpackPlugin({
             template: 'src/index.html',
-            filename: './index.html', // Relative to output.path (target)
+            filename: './index.html', // Relative to output.path (public)
             inject: true // Automatically insert <link> and <script> elements where necessary.
         }),
     ],
