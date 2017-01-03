@@ -18,9 +18,9 @@ export function registration(model) {
 
 export function registrationCreateSuccess(model) {
     model.page = C.PAGE_REGISTRATION;
-    model.statusCode = U.isObjEmpty(model.registration.specificErrorMessages) ?
-        C.REGISTRATION_SUCCESS :
-        C.REGISTRATION_VALIDATION_FAILED;
+    model.statusCode = U.isObjEmpty(model.registration.specificErrorMessages)
+        ? C.REGISTRATION_SUCCESS
+        : C.REGISTRATION_VALIDATION_FAILED;
 
     if (model.statusCode == C.REGISTRATION_SUCCESS) {
         model.generalMessage = C.REGISTRATION_SUCCESS_MESSAGE;
