@@ -12,3 +12,5 @@ const query = document.location.search.slice(1).split('&');
 action.init();
 
 
+
+
