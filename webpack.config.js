@@ -13,6 +13,9 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
+    // resolve: {
+    //     root: path.resolve('./src'),
+    // },
     entry: './src/app.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -22,15 +25,17 @@ module.exports = {
     devtool: "inline-source-map",
     module: {
         rules: [{
-                test: /\.txt$/,
-                use: 'raw-loader'
-            },
-            {
-                test: /\.(js)$/,
-                loader: 'babel-loader'
+                // https://www.codementor.io/goodnesstoluwanimikayode134/setting-up-react-with-webpack-3-0-yarn-and-babel-9ftd5phqz
+                test: /\.jsx?$/,
+                loader: 'babel-loader',
+                exclude: /node_modules/,
+                options: {
+                    presets: ['env']
+                }
             },
             {
                 test: /\.scss$/,
+                exclude: /node_modules/,
                 use: extractSass.extract({
                     use: [{
                         loader: "css-loader",
@@ -43,9 +48,26 @@ module.exports = {
                             sourceMap: true
                         }
                     }],
-                    // use style-loader in development
+                    // Use style-loader in development
                     fallback: "style-loader"
                 })
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192
+                    }
+                }]
+            },
+            {
+                test: /\.(svg|woff|eot|ttf)$/,
+                use: 'file-loader'
+            },
+            {
+                test: /\.txt$/,
+                use: 'raw-loader'
             }
         ]
     },

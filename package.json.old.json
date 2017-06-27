@@ -14,7 +14,7 @@
   },
   "author": "",
   "license": "BSD-2-Clause",
-  "devDependencies": {
+  "dependencies": {
     "babel-core": "^6.7.7",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.4",

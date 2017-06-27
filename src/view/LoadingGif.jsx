@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import loadingGif from "../images/loadingGifV1.gif";
+import loadingGif from "../images/loading.gif";
 
 const commentPre = "####> loadingGif:";
 
