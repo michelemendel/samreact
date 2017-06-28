@@ -1,11 +1,10 @@
 .DS_Store
+.idea/
+*.iml
 
 *.log
 
-target/
-web/public/
+dist/
 node_modules/
 
-.idea/
-*.iml
 
