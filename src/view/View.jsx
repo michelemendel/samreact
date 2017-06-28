@@ -9,10 +9,6 @@ import PopFromTop from "./PopFromTop.jsx";
 
 class View extends Component {
 
-    /***************************************************************
-     * Life-cycle events
-     */
-
     constructor(props) {
         super(props);
     }
@@ -38,9 +34,6 @@ class View extends Component {
      */
 
     render() {
-
-        // console.log('View', U.pp(this.props.model));
-
         return (
             // Page Template
             <div className="page">
@@ -48,7 +41,7 @@ class View extends Component {
                 <div className="page__header">
                     <div className="page__header__title">
                         <span className="icon icon-mug"></span>
-                        SAM & React
+                        React (with SAM Pattern)
                     </div>
                     <div className="nav">
                         <div className="nav--bottom">

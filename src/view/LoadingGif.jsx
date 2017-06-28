@@ -1,7 +1,5 @@
-import React, {Component} from "react";
+import React from "react";
 import loadingGif from "../images/loading.gif";
-
-const commentPre = "####> loadingGif:";
 
 export function loadingGifToggler() {
     let isLoadingVal = true;
@@ -9,35 +7,19 @@ export function loadingGifToggler() {
         toggle: () => {
             isLoadingVal = !isLoadingVal;
         },
-        on: () => {isLoadingVal = true},
-        off: () => {isLoadingVal = false},
+        on: () => { isLoadingVal = true },
+        off: () => { isLoadingVal = false },
         isLoading: () => isLoadingVal
     }
 }
 
-export default class LoadingGif extends Component {
+export default (props) => {
+    const show = props.display;
 
-    /****************************************************************
-     * Life-cycle events
-     */
-
-    constructor(props) {
-        super(props);
-    }
-
-    /****************************************************************
-     * Render
-     */
-
-    render() {
-        let show = this.props.display;
-
-        return (
-            <div className="loading-gif">
-                {show ? <img className="loading-gif__image" src={loadingGif} alt="Laster data..."/> : '' }
-            </div>)
-
-    }
+    return (
+        <div className="loading-gif">
+            {show ? <img className="loading-gif__image" src={loadingGif} alt="Laster data..." /> : ''}
+        </div>)
 }
 
 

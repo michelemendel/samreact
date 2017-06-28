@@ -6,10 +6,8 @@ import * as db from '../db/registration';
 import model from "../data/model";
 
 let M = {};
-const commentPre = "aaaa> SAMAction:";
 
-
-export function init(){
+export function init() {
     M.model = model();
     M.model.statusCode = C.REGISTRATION_INIT;
 
@@ -86,6 +84,9 @@ export function sortTable(sortColumn, sortDir) {
 // Details modal
 export function listShowDetails(isShow) {
     return (dbId) => {
+        
+        console.log("listShowDetails", dbId);
+
         return () => {
             M.model.list.selectedRow = Object.assign({}, M.model.list.rows.filter((row) => {
                 return row.id === dbId;

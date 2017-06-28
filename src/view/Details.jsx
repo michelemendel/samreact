@@ -1,33 +1,38 @@
-import React, {Component} from "react";
+import React from "react";
 import * as U from "../common/utils";
 
-const commentPre = "====> Details:";
+export default (props) => {
 
-export default class Details extends Component {
-
-    /***************************************************************
-     * Life-cycle events
-     */
-
-    constructor(props) {
-        super(props);
-    }
-
-    /***************************************************************
-     * Event handlers
-     */
-
-    print() {
+    function print() {
         return () => {
             window.print();
         };
     }
 
-    /***************************************************************
-     * Render
-     */
+    const opplysningerKeys = [
+        'aOrB',
+        'selectOne',
+        'informationText'
+    ];
 
-    group(row, groupTitle, rowKeys, rowTitles) {
+    const opplysningerTitles = [
+        'A or B',
+        'Select one',
+        'Text'
+    ];
+
+    const data = this.props.list;
+    const title = "Registration";
+    const body = <div>
+        {
+            group(data,
+                'Data',
+                ['aOrB', 'selectOne', 'informationText'],
+                ['A,B', 'Selected', 'Text'])
+        }
+    </div>;
+
+    function group(row, groupTitle, rowKeys, rowTitles) {
         return <div>
             <div className="details__group-title">{groupTitle}</div>
             <ul className="details__ul">{
@@ -41,60 +46,33 @@ export default class Details extends Component {
         </div>
     }
 
-    render() {
-        // console.log(commentPre + "render: ", U.pp(this.props));
+    return (
+        <div className="modal">
+            <div className="details">
+                <header className="details_header">
+                    {title}
+                </header>
 
-        let opplysningerKeys = [
-            'aOrB',
-            'selectOne',
-            'informationText'
-        ];
-
-        let opplysningerTitles = [
-            'A or B',
-            'Select one',
-            'Text'
-        ];
-
-        const data = this.props.list,
-            title = "Registration",
-            body = <div>
-                {
-                    this.group(data,
-                        'Data',
-                        ['aOrB', 'selectOne', 'informationText'],
-                        ['A,B', 'Selected', 'Text'])
-                }
-            </div>;
-
-        return (
-            <div className="modal">
-                <div className="details">
-                    <header className="details_header">
-                        {title}
-                    </header>
-
-                    <div className="details__content">
-                        <div className="details__content__body">
-                            {body}
-                        </div>
-                    </div>
-
-                    <div className="details__buttons no-print">
-                        <button
-                            className="details__buttons__button"
-                            onClick={window.print}>
-                            Skriv ut
-                        </button>
-                        <button
-                            className="details__buttons__button"
-                            onClick={this.props.cancel}>
-                            Lukk
-                        </button>
+                <div className="details__content">
+                    <div className="details__content__body">
+                        {body}
                     </div>
                 </div>
+
+                <div className="details__buttons no-print">
+                    <button
+                        className="details__buttons__button"
+                        onClick={window.print}>
+                        Skriv ut
+                        </button>
+                    <button
+                        className="details__buttons__button"
+                        onClick={props.cancel}>
+                        Lukk
+                        </button>
+                </div>
             </div>
-        )
-    }
+        </div>
+    )
 }
 

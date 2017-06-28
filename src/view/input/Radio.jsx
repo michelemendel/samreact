@@ -2,26 +2,9 @@ import React, {Component} from "react";
 import * as C from "../../common/constants.js";
 import * as U from "../../common/utils";
 
-const commentPre = "====> Radio:";
-
 export default class Radio extends Component {
 
-    /***************************************************************
-     * Life-cycle events
-     */
-
-    constructor(props) {
-        super(props);
-        // this.hc = props.handleChange;
-    }
-
-    /***************************************************************
-     * Render
-     */
-
     render() {
-        // console.log(U.pp(this.props));
-
         const values = this.props.values,
             checkedVal = this.props.checkedVal;
 

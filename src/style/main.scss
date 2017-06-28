@@ -1,0 +1,30 @@
+/*
+ * BEM: Block, Element, Modifier
+ * .block__element--modifier
+ *
+ * Prefixes:
+ * http://blog.kaelig.fr/post/48196348743/fifty-shades-of-bem
+ *
+ * p- Page specific (class applied on the body element), very useful for static pages where maintainability is not at stake — should be avoided in the application itself (e.g.: p-Homepage).
+ * l- Layout, columning, wrappers and containers… (e.g.: l-Masthead, l-Footer)
+ * c- For components (e.g.: c-Dropdown, c-Button…).
+ * u- Utility classes — will probably never change, should never be overridden anywhere else in our code (e.g.: u-textCenter, u-clearfix…).
+ * js- Hooks for JavaScript: should never appear in the CSS itself.
+ *
+ */
+
+$icon-font-path: "icons/";
+
+@import "~normalize.css/normalize.css";
+
+@import "constants";
+@import "colors";
+@import "icons/icomoon";
+@import "basic-html";
+
+@import 'layout';
+@import 'navigation';
+@import 'form';
+@import 'table';
+@import 'popfromtop';
+@import 'details-and-print';

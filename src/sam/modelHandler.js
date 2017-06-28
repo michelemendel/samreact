@@ -2,9 +2,7 @@ import React from "react";
 import * as stateController from './stateController';
 import * as C from "../common/constants.js";
 import * as U from "../common/utils";
-import * as db from '../db/registration';
-
-const commentPre = "mmmm> modelHandler:";
+import * as api from '../api/registration';
 
 /***************************************************************
  * Registration
@@ -21,7 +19,7 @@ export function presentRegistrationFormUpdate(model) {
 export function presentRegistrationCreate(model) {
     validate(model.registration)
         .then(() => {
-            db.addRegistration(model.registration);
+            api.addRegistration(model.registration);
             model.registration.specificErrorMessages = {};
             stateController.registrationCreateSuccess(model);
         })

@@ -13,9 +13,6 @@ const extractSass = new ExtractTextPlugin({
 });
 
 module.exports = {
-    // resolve: {
-    //     root: path.resolve('./src'),
-    // },
     entry: './src/app.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -73,7 +70,6 @@ module.exports = {
     },
     plugins: [
         extractSass,
-        // new UglifyJsPlugin(),
         new HtmlWebpackPlugin({
             template: './src/index.html',
             filename: 'index.html'

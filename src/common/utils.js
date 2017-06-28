@@ -3,9 +3,7 @@ import Flat from 'flat'; //https://github.com/hughsk/flat
 import * as C from './constants';
 import moment from 'moment';
 
-const commentPre = "----> U:",
-    FLATTEN_DELIMITER = '_';
-
+const FLATTEN_DELIMITER = '_';
 
 /***************************************************************
  * Test and predicate functions
@@ -31,7 +29,6 @@ export function isBoolean(obj) {
 export function caseInsensitiveTextPredicate(searchStr) {
     return (text) => text.toLowerCase().indexOf(searchStr.toLowerCase()) != -1;
 }
-
 
 /***************************************************************
  * String handling functions
@@ -61,24 +58,22 @@ export function startCase(s) {
 
 export function translate(text) {
     switch (text) {
-    case C.UNDEFINED:
-        return '-';
-    case 'true':
-        return 'Yes';
-    case 'false':
-        return 'No';
-    default:
-        return text;
+        case C.UNDEFINED:
+            return '-';
+        case 'true':
+            return 'Yes';
+        case 'false':
+            return 'No';
+        default:
+            return text;
     }
 }
-
 
 /***************************************************************
  * Misc functions
  */
 
-export function noOp() {}
-
+export function noOp() { }
 
 /***************************************************************
  * Date-time functions
@@ -123,12 +118,12 @@ export function isAfterToday(selectedDate) {
 
 // Flatten an object
 export function flatten(obj) {
-    return Flat.flatten(obj, {safe: true, delimiter: FLATTEN_DELIMITER});
+    return Flat.flatten(obj, { safe: true, delimiter: FLATTEN_DELIMITER });
 }
 
 // Unflatten an object
 export function unflatten(obj) {
-    return Flat.unflatten(obj, {safe: true, delimiter: FLATTEN_DELIMITER});
+    return Flat.unflatten(obj, { safe: true, delimiter: FLATTEN_DELIMITER });
 }
 
 /**

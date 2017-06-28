@@ -6,8 +6,6 @@ import model from "../data/model";
 
 const view = stateRepresentation.getRoot();
 
-const commentPre = "ssss> SAMState:";
-
 /***************************************************************
  * Registration
  */
