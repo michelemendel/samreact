@@ -1,6 +1,6 @@
 import * as U from '../common/utils';
 import selectOne from './select_one.json';
-import * as db from '../db/registration';
+import * as db from '../api/registration';
 
 /**
  * Lookup data from a local list.

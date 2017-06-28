@@ -67,9 +67,13 @@ export default (props) => {
         if (!props.model.list.showDetails) { return; }
 
         return <Details
-            cancel={cancel()}
-            list={modal.list}
+            close={close}
+            row={props.model.list.selectedRow}
         />;
+    }
+
+    function close() {
+        action.hideDetails();
     }
 
     /***************************************************************
@@ -124,13 +128,6 @@ export default (props) => {
                     </thead>
 
                     <tbody className="table__body__rows">
-
-                        {
-                            rows.forEach((row) => {
-                                console.log(row.id);
-                            })
-                        }
-
                         {rows.map((row, i) => <TableRow
                             key={i}
                             dbId={row.id}

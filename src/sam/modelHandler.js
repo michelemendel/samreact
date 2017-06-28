@@ -3,6 +3,7 @@ import * as stateController from './stateController';
 import * as C from "../common/constants.js";
 import * as U from "../common/utils";
 import * as api from '../api/registration';
+import md5 from "blueimp-md5";
 
 /***************************************************************
  * Registration
@@ -19,6 +20,7 @@ export function presentRegistrationFormUpdate(model) {
 export function presentRegistrationCreate(model) {
     validate(model.registration)
         .then(() => {
+            model.registration.id = md5(U.today()); // Create a unique id based on time
             api.addRegistration(model.registration);
             model.registration.specificErrorMessages = {};
             stateController.registrationCreateSuccess(model);
@@ -30,12 +32,12 @@ export function presentRegistrationCreate(model) {
 }
 
 // validate : object -> object
-export function validate(registration) {
+function validate(registration) {
     return new Promise((resolve, reject) => {
         if (registration.informationText !== "") {
             resolve('A-OK');
         } else {
-            reject({informationText: "Can't be empty"});
+            reject({ informationText: "Can't be empty" });
         }
     });
 }
@@ -50,6 +52,10 @@ export function presentList(model) {
         listFilter(model.list.rowsAll, C.DEFAULT_COLS_TO_FILTER_BY, model.list.filterText),
         model.list.sortColumn, model.list.sortDir);
 
+    stateController.renderModel(model);
+}
+
+export function presentDetails(model) {
     stateController.renderModel(model);
 }
 

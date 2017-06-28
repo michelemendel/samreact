@@ -9,7 +9,7 @@ export default (props) => {
             model={props.model}
             colsToFilterBy={C.DEFAULT_COLS_TO_FILTER_BY}
             colsToShow={C.DEFAULT_COLS_TO_SHOW}
-            rowClickFn={action.listShowDetails(C.LIST_DETAILS_SHOW)}
+            rowClickFn={action.showDetails()}
         />
     )
 }

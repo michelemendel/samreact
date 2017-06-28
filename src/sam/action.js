@@ -2,7 +2,7 @@ import * as modelHandler from './modelHandler';
 import * as C from "../common/constants";
 import * as U from "../common/utils";
 import * as selectOne from "../data/select_one";
-import * as db from '../db/registration';
+import * as api from '../api/registration';
 import model from "../data/model";
 
 let M = {};
@@ -25,7 +25,7 @@ export function navigatePageRegistration() {
 
 export function navigatePageRegistrationList() {
     M.model.page = C.PAGE_LIST;
-    M.model.list.rowsAll = db.getRegistrations();
+    M.model.list.rowsAll = api.getRegistrations();
     modelHandler.presentList(M.model);
 }
 
@@ -82,17 +82,20 @@ export function sortTable(sortColumn, sortDir) {
 }
 
 // Details modal
-export function listShowDetails(isShow) {
+export function showDetails() {
     return (dbId) => {
-        
-        console.log("listShowDetails", dbId);
-
         return () => {
             M.model.list.selectedRow = Object.assign({}, M.model.list.rows.filter((row) => {
                 return row.id === dbId;
             })[0]);
 
-            modelHandler.presentList(M.model);
+            M.model.list.showDetails = true;
+            modelHandler.presentDetails(M.model);
         };
     };
+}
+
+export function hideDetails() {
+    M.model.list.showDetails = false;
+    modelHandler.presentDetails(M.model);
 }

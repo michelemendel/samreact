@@ -44,8 +44,8 @@ function napNewRegistration() {
  */
 
 export function renderModel(model) {
-    console.clear();
-    U.ppl(model.registration);
+    // console.clear();
+    // U.ppl(model.registration);
 
     view(model);
 }

@@ -2,6 +2,7 @@ import React from "react";
 import * as U from "../common/utils";
 
 export default (props) => {
+    const title = "Registration";
 
     function print() {
         return () => {
@@ -9,32 +10,18 @@ export default (props) => {
         };
     }
 
-    const opplysningerKeys = [
-        'aOrB',
-        'selectOne',
-        'informationText'
-    ];
-
-    const opplysningerTitles = [
-        'A or B',
-        'Select one',
-        'Text'
-    ];
-
-    const data = this.props.list;
-    const title = "Registration";
-    const body = <div>
-        {
-            group(data,
-                'Data',
-                ['aOrB', 'selectOne', 'informationText'],
-                ['A,B', 'Selected', 'Text'])
-        }
-    </div>;
-
-    function group(row, groupTitle, rowKeys, rowTitles) {
+    function body(row) {
         return <div>
-            <div className="details__group-title">{groupTitle}</div>
+            {
+                group(row,
+                    ['aOrB', 'selectOne', 'informationText'],
+                    ['A,B', 'Selected', 'Text'])
+            }
+        </div>;
+    }
+
+    function group(row, rowKeys, rowTitles) {
+        return <div>
             <ul className="details__ul">{
                 rowKeys.map((rowKey, i) =>
                     <li className="details__li" key={i}>
@@ -55,7 +42,7 @@ export default (props) => {
 
                 <div className="details__content">
                     <div className="details__content__body">
-                        {body}
+                        {body(props.row)}
                     </div>
                 </div>
 
@@ -67,7 +54,7 @@ export default (props) => {
                         </button>
                     <button
                         className="details__buttons__button"
-                        onClick={props.cancel}>
+                        onClick={props.close}>
                         Lukk
                         </button>
                 </div>
