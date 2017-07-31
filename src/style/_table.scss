@@ -2,6 +2,10 @@
  * Table
  */
 
+table {
+    border-collapse: collapse;
+}
+
 .table__filter__input {
   border: 1px solid $input-border-color;
   min-height: 0;

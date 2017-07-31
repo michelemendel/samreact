@@ -22,14 +22,14 @@ module.exports = {
     devtool: "inline-source-map",
     module: {
         rules: [{
-                // https://www.codementor.io/goodnesstoluwanimikayode134/setting-up-react-with-webpack-3-0-yarn-and-babel-9ftd5phqz
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                exclude: /node_modules/,
-                options: {
-                    presets: ['env']
-                }
-            },
+            // https://www.codementor.io/goodnesstoluwanimikayode134/setting-up-react-with-webpack-3-0-yarn-and-babel-9ftd5phqz
+            test: /\.jsx?$/,
+            loader: 'babel-loader',
+            exclude: /node_modules/,
+            options: {
+                presets: ['env']
+            }
+        },
             {
                 test: /\.scss$/,
                 exclude: /node_modules/,
@@ -82,4 +82,4 @@ module.exports = {
         compress: false,
         hot: true
     }
-}
+};
