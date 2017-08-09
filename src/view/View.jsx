@@ -6,6 +6,8 @@ import * as U from "../common/utils";
 import Registration from "./Registration.jsx";
 import List from "./List.jsx";
 import PopFromTop from "./PopFromTop.jsx";
+import PropTypes from 'prop-types';
+
 
 class View extends Component {
 
@@ -64,7 +66,7 @@ class View extends Component {
     }
 
     showNavButton(props, page) {
-        const selectedPage = this.props.model.page;
+        const selectedPage = props.model.page;
 
         return <button
             onClick={this.navigate(page)}
@@ -75,7 +77,7 @@ class View extends Component {
     showInfoBox(props) {
         return <PopFromTop
             title={props.model.generalMessage}
-            statusCode={this.props.model.statusCode}
+            statusCode={props.model.statusCode}
         />;
     }
 
@@ -120,3 +122,12 @@ export function getRoot() {
         );
     };
 }
+
+
+View.propTypes = {
+    model: PropTypes.shape({
+        statusCode: PropTypes.string,
+        page: PropTypes.string,
+        generalMessage: PropTypes.string
+    })
+};
