@@ -44,6 +44,8 @@ function napNewRegistration() {
  */
 
 export function renderModel(model) {
+    window.model = JSON.stringify(model, null, '\t');
+    
     // console.clear();
     // U.ppl(model.registration);
 

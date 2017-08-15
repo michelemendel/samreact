@@ -24,7 +24,7 @@
 * [The Sam Pattern](http://sam.js.org/).
 * [Introducing the SAM pattern as an alternative to MVC](http://www.ebpml.org/blog15/2016/01/introducing-the-sam-pattern-as-an-alternative-to-mvc/)
 
-### List of things to add or change in a project
+### Things to add or change in a project
 * Redux instead of SAM Pattern
 * React Router
 * ESLint
