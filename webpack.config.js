@@ -14,12 +14,17 @@ const extractSass = new ExtractTextPlugin({
 
 module.exports = {
     entry: './src/app.js',
+
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js'
     },
+
     // https://webpack.js.org/configuration/devtool/
     devtool: "inline-source-map",
+
+    target: "web",
+
     module: {
         rules: [{
             // https://www.codementor.io/goodnesstoluwanimikayode134/setting-up-react-with-webpack-3-0-yarn-and-babel-9ftd5phqz
@@ -68,18 +73,20 @@ module.exports = {
             }
         ]
     },
+
     plugins: [
         extractSass,
+
         new HtmlWebpackPlugin({
-            template: './src/index.html',
+            template: 'src/index.html',
             filename: 'index.html'
         }),
-        new webpack.HotModuleReplacementPlugin() // Enable HMR
+        // new webpack.HotModuleReplacementPlugin() // Enable HMR
     ],
+
     devServer: {
-        // contentBase: path.join(__dirname, "dist"),
         port: 9090,
         compress: false,
-        hot: true
+        // hot: true
     }
 };
