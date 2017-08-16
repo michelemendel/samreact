@@ -16,7 +16,7 @@ function modelBasic() {
 
         statusCode: C.REGISTRATION_INIT,
         generalMessage: "",
-        invalidateCache:C.INVALIDATE_CACHE_NO,
+        invalidateCache: C.INVALIDATE_CACHE_NO,
 
         list: {
             rowsAll: [],
@@ -41,4 +41,3 @@ function registrationInit() {
         specificErrorMessages: {}
     };
 }
-

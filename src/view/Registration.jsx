@@ -1,6 +1,5 @@
 import React from "react";
 import * as action from '../sam/action';
-import * as C from "../common/constants.js";
 import * as U from "../common/utils";
 import RegistrationContent from "./RegistrationContent.jsx";
 
@@ -26,5 +25,5 @@ export default (props) => {
 
         </div>
     )
-};
 
+};
